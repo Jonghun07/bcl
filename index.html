@@ -71,7 +71,10 @@
   .layer .lk{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--acc2)}
   .layer .lt{font-size:20px;font-weight:650;margin:4px 0 4px}
   .layer .ld{font-size:13.5px;color:var(--muted)}
-  .layer.top{border-color:rgba(79,191,184,.45);box-shadow:0 0 40px rgba(79,191,184,.12)}
+  .layer.top{background:linear-gradient(135deg,var(--acc),#0f1e78);border-color:rgba(255,255,255,.18);box-shadow:0 10px 30px rgba(20,40,160,.45)}
+  .layer.top .lk{color:#c7d0f2}
+  .layer.top .lt{color:#fff}
+  .layer.top .ld{color:rgba(255,255,255,.82)}
   .up{color:var(--acc);font-size:22px;line-height:1;padding:9px 0}
   .goal{margin-top:26px;display:inline-flex;align-items:center;gap:10px;background:rgba(20,40,160,.12);border:1px solid rgba(20,40,160,.3);border-radius:12px;padding:14px 22px}
   .goal .gk{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--muted2)}
@@ -135,6 +138,7 @@
   /* METHODS / KEYWORDS */
   .methods{display:flex;flex-wrap:wrap;gap:11px;margin-top:34px}
   .method{padding:11px 18px;border-radius:10px;background:var(--panel);border:1px solid var(--line2);font-size:14.5px;font-weight:500}
+  .method.hl{background:linear-gradient(135deg,var(--acc),#0f1e78);border-color:rgba(255,255,255,.18);color:#fff;font-weight:600;box-shadow:0 8px 22px rgba(20,40,160,.4)}
 
   /* PUBLICATIONS */
   .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:38px}
@@ -168,23 +172,24 @@
   .vision .motto .grad{font-weight:700}
 
   /* PROFESSOR */
-  .prof{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:start;margin-top:40px}
-  .prof-card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:20px;padding:34px;text-align:center}
+  .prof{display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:start;margin-top:40px}
+  .prof-card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:20px;padding:30px;text-align:center}
   .avatar{width:120px;height:120px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;
     background:linear-gradient(135deg,var(--acc),var(--pink));font-size:42px;font-weight:600;color:#fff;overflow:hidden}
   .avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
   .prof-card .nm{font-size:22px;font-weight:600}
   .prof-card .rl{color:var(--acc2);font-size:14px;margin-top:4px}
-  .prof-card .org{color:var(--muted);font-size:14px;margin-top:14px;line-height:1.7}
+  .prof-card .org{color:var(--muted);font-size:13px;margin-top:14px;line-height:1.7}
   .prof-bio p{color:var(--muted);font-size:16px;margin-bottom:16px}
   .prof-bio h3{font-size:15px;font-weight:700;color:var(--acc3);margin:24px 0 12px;letter-spacing:.03em}
   .roles{display:flex;flex-direction:column;gap:9px}
   .role{font-size:14.5px;color:var(--muted);padding-left:16px;position:relative}
-  .awards{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
-  .awards th,.awards td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .awards{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+  .awards th,.awards td{text-align:left;padding:9px 9px;border-bottom:1px solid var(--line);vertical-align:top}
   .awards thead th{color:var(--acc3);font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--line2)}
   .awards td.yr{color:var(--acc2);font-weight:600;white-space:nowrap}
   .awards td.aw{color:var(--txt)}
+  .awards .medal{font-size:.9em}
   .awards td.by{color:var(--muted);white-space:nowrap}
   .awards tbody tr:hover{background:rgba(20,40,160,.06)}
   .awards-note{font-size:12.5px;color:var(--muted2);margin-top:10px}
@@ -243,7 +248,7 @@
   <div class="wrap">
     <span class="eyebrow">Building Cognition · BIM2Everything · Autonomous Buildings</span>
     <h1>Empowering Buildings to<span class="l2">Perceive, Reason, and Act</span></h1>
-    <p class="lead">Building Cognition Lab (BCL) develops the scientific foundation for next-generation intelligent buildings &mdash; integrating BIM, digital twins, AI, knowledge graphs, and physics-based simulation so buildings can understand themselves and operate autonomously.</p>
+    <p class="lead">Building Cognition Lab (BCL) develops the scientific foundation for next-generation intelligent buildings &mdash; integrating BIM, digital twins, lightweight AI models for edge devices, building energy and environmental knowledge graphs, and physics-based simulation so buildings can understand themselves and operate autonomously.</p>
     <div class="cta">
       <a class="btn btn-primary" href="#research">Explore Building Cognition &rarr;</a>
       <a class="btn btn-ghost" href="#platform">View BIM2Everything Platform</a>
@@ -263,7 +268,9 @@
     <div class="two">
       <div class="about">
         <p>Building Cognition Lab develops the scientific foundation for next-generation intelligent buildings.</P>
-        <P>Our research integrates <strong>Building Information Modeling (BIM)</strong>, <strong>Digital Twins</strong>, <strong>Artificial Intelligence</strong>, <strong>Knowledge Graphs</strong>, and <strong>physics-based simulation</strong> to enable buildings to perceive, understand, reason, predict, learn, and autonomously make decisions.</p>
+        <P>Our research integrates <strong>Building Information Modeling (BIM)</strong>, <strong>Digital Twins</strong>, <strong>lightweight AI models for edge devices</strong>, <strong>building energy and environmental knowledge graphs</strong>, and <strong>physics-based simulation</strong> to enable buildings to perceive, understand, reason, predict, learn, and autonomously make decisions.</p>
+        <p>The framework is inspired by <strong>neuroscience</strong>. Just as the brain integrates signals from its sensory organs, forms memory, and reasons before acting, BCL treats a building as a cognitive system: in-situ sensors (U-value, airtightness, IAQ, thermal comfort, occupant productivity) serve as its <strong>senses</strong>, digital twins and knowledge graphs form its <strong>memory and world-model</strong>, and edge AI provides the <strong>reasoning</strong> that turns perception into action &mdash; mirrored in our logo, where a neuron receives inputs, decides whether to fire, and propagates an output.</p>
+        <p>This cognitive-neuroscience perspective is grounded in a two-decade empirical record of field measurement and validated building-physics models, ensuring that every layer of intelligence is anchored in real, measured performance rather than assumption.</p>
         <p>Our vision is to create buildings that continuously understand themselves and their surrounding environments, optimize their own performance, and operate autonomously.</p>
         <div class="goal">
           <span class="gk">ULTIMATE Vision</span>
@@ -272,7 +279,7 @@
       </div>
 
       <div>
-        <div class="ktag" style="text-align:center;margin-bottom:14px">RESEARCH PHILOSOPHY &mdash; THREE LAYERS</div>
+        <div class="ktag" style="text-align:center;margin-bottom:14px">RESEARCH PHILOSOPHY &mdash; FOUR LAYERS</div>
         <div class="stack">
           <div class="layer top">
             <div class="lk">VISION</div>
@@ -290,6 +297,12 @@
             <div class="lk">PLATFORM</div>
             <div class="lt">BIM2Everything (B2E)</div>
             <div class="ld">The integrated digital research platform</div>
+          </div>
+          <div class="up">&uarr;</div>
+          <div class="layer">
+            <div class="lk">MEASUREMENT</div>
+            <div class="lt">In-situ Performance Sensing</div>
+            <div class="ld">Field measurement of indoor &amp; outdoor building environmental performance &mdash; U-value, airtightness, IAQ, thermal comfort, and occupant intellectual productivity</div>
           </div>
         </div>
       </div>
@@ -329,72 +342,87 @@
   <div class="wrap">
     <span class="eyebrow">Research Directions</span>
     <h2 class="title">The Cognitive Lifecycle of Intelligent Buildings</h2>
-    <p class="lead">Instead of organizing research by individual technologies, BCL structures its work around the complete cognitive lifecycle of intelligent buildings &mdash; from digital representation to autonomous operation.</p>
+    <p class="lead">Instead of organizing research by individual technologies, BCL structures its work around the complete cognitive lifecycle of intelligent buildings &mdash; from in-situ sensing and digital representation to autonomous operation.</p>
+    <p style="margin-top:14px;font-size:15px;font-weight:600;letter-spacing:.01em"><span class="grad">Sense &rarr; Represent &rarr; Simulate &rarr; Understand &rarr; Decide &rarr; Act</span></p>
 
     <div class="grid">
       <div class="card">
         <span class="num">01</span>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M2 12h3M19 12h3M12 2v3M12 19v3"/><circle cx="12" cy="12" r="3"/><path d="M6.5 6.5l1.8 1.8M17.5 6.5l-1.8 1.8M6.5 17.5l1.8-1.8M17.5 17.5l-1.8-1.8"/></svg></div>
+        <h3>Building Environmental Sensing</h3>
+        <p>Measuring the real, in-situ performance of buildings &mdash; the empirical senses that ground Building Cognition in measured reality.</p>
+        <div class="ktag">RESEARCH TOPICS</div>
+        <div class="tags">
+          <span class="tag acc">Building Energy Management System</span><span class="tag">Building Automation System</span>
+          <span class="tag">IAQ monitoring</span><span class="tag">in-situ measurement</span>
+          <span class="tag">Occupancy &amp; Human Performance</span><span class="tag">IoT &amp; virtual sensors</span>
+        </div>
+        <div class="kw">KEYWORDS <b>BEMS · BAS · IAQ · In-situ Measurement</b></div>
+      </div>
+
+      <div class="card">
+        <span class="num">02</span>
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg></div>
         <h3>Building Digital Representation</h3>
         <p>Creating rich digital representations and digital twins as the foundation of Building Cognition.</p>
         <div class="ktag">RESEARCH TOPICS</div>
         <div class="tags">
-          <span class="tag acc">BIM</span><span class="tag">IFC interoperability</span><span class="tag">Digital Twin</span>
-          <span class="tag">Semantic models</span><span class="tag">Building metadata</span><span class="tag">Geometry processing</span><span class="tag">BIM2Everything (B2E)</span>
+          <span class="tag acc">BIM</span><span class="tag">IFC Interoperability</span><span class="tag">Digital Twins</span>
+          <span class="tag">Building metadata</span><span class="tag">Geometry processing</span><span class="tag">BIM2Everything (B2E)</span>
         </div>
-        <div class="kw">KEYWORDS <b>BIM · IFC · Digital Twin · Data Integration</b></div>
+        <div class="kw">KEYWORDS <b>BIM · IFC · Digital Twin · Interoperability</b></div>
       </div>
 
       <div class="card">
-        <span class="num">02</span>
+        <span class="num">03</span>
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg></div>
         <h3>Building Performance Simulation</h3>
         <p>Understanding buildings through physics-based simulation across energy, environment, safety, and sustainability.</p>
         <div class="ktag">RESEARCH TOPICS</div>
         <div class="tags">
-          <span class="tag acc">Energy Efficiency</span><span class="tag">Demand response</span><span class="tag">Outdoor & Indoor CFD</span>
-          <span class="tag">Thermal comfort · IAQ</span><span class="tag">Fire &amp; evacuation</span><span class="tag">LCA · Carbon neutrality</span>
+          <span class="tag acc">Energy Efficiency</span><span class="tag">Demand response</span><span class="tag">Indoor &amp; Outdoor CFD</span>
+          <span class="tag">Thermal Comfort</span><span class="tag">Indoor Air Quality</span><span class="tag">Fire &amp; evacuation</span><span class="tag">LCA · Carbon neutrality</span>
         </div>
         <div class="kw">KEYWORDS <b>Physics-based Simulation · CFD · Building Energy</b></div>
       </div>
 
       <div class="card">
-        <span class="num">03</span>
+        <span class="num">04</span>
         <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M9.3 10.4 6.4 7.3M14.7 10.4l2.9-3.1M9.3 13.6l-2.9 3.1M14.7 13.6l2.9 3.1"/></svg></div>
         <h3>Building Cognition</h3>
         <p>Developing the cognitive foundation that enables buildings to perceive, understand, reason, predict, and learn.</p>
         <div class="ktag">RESEARCH TOPICS</div>
         <div class="tags">
-          <span class="tag acc">Building Knowledge Graph</span><span class="tag">Brick / REC Ontology</span><span class="tag">Semantic reasoning</span>
-          <span class="tag">Context-aware intelligence</span><span class="tag">Foundation Models</span><span class="tag">LLMs for Buildings</span>
+          <span class="tag acc">Building Energy &amp; Environmental Knowledge Graphs</span><span class="tag">Building Ontologies (Brick / REC)</span>
+          <span class="tag">Semantic Modeling</span><span class="tag">Semantic Reasoning</span><span class="tag">Context Modeling</span><span class="tag">Knowledge Representation</span>
         </div>
-        <div class="kw">KEYWORDS <b>Ontology • Knowledge Graph • Foundation Models</b></div>
+        <div class="kw">KEYWORDS <b>Ontology • Knowledge Graph • Context • Reasoning</b></div>
       </div>
 
       <div class="card">
-        <span class="num">04</span>
+        <span class="num">05</span>
         <div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="2"/><path d="M12 8V4M9 4h6"/><circle cx="9.5" cy="13" r="1.2"/><circle cx="14.5" cy="13" r="1.2"/><path d="M2 12v3M22 12v3"/></svg></div>
         <h3>Building Intelligence</h3>
         <p>Transforming Building Cognition into intelligent perception, prediction, and decision-making.</p>
         <div class="ktag">RESEARCH TOPICS</div>
         <div class="tags">
-          <span class="tag acc">AI Agents</span><span class="tag">Reinforcement learning</span><span class="tag">Predictive analytics</span>
-          <span class="tag">Fault detection</span><span class="tag">Occupancy modeling</span><span class="tag">Edge AI</span>
+          <span class="tag acc">AI Agents</span><span class="tag">Reinforcement Learning</span><span class="tag">Foundation Models &amp; LLMs</span>
+          <span class="tag">Predictive Analytics</span><span class="tag">Fault Detection &amp; Diagnostics</span><span class="tag">Occupancy Modeling</span>
         </div>
-        <div class="kw">KEYWORDS <b>AI Agents • Reinforcement Learning • Edge AI</b></div>
+        <div class="kw">KEYWORDS <b>AI Agents • Foundation Models • FDD</b></div>
       </div>
 
       <div class="card">
-        <span class="num">05</span>
+        <span class="num">06</span>
         <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></div>
         <h3>Autonomous Building Operation</h3>
         <p>Transforming Building Intelligence into autonomous building operation.</p>
         <div class="ktag">RESEARCH TOPICS</div>
         <div class="tags">
-          <span class="tag acc">Neuromorphic Computing</span><span class="tag">Spiking Neural Networks</span><span class="tag">Edge AI</span>
-          <span class="tag">Human-in-the-loop AI</span><span class="tag">AI Agent</span><span class="tag">Embedded system</span>
+          <span class="tag acc">Autonomous Building Control</span><span class="tag">AI Agents</span><span class="tag">Multi-Agent Coordination</span>
+          <span class="tag">Neuromorphic Edge AI</span><span class="tag">Human-in-the-loop Control</span><span class="tag">Embedded Systems</span>
         </div>
-        <div class="kw">KEYWORDS <b>Neuromorphic AI • Intelligent Control • Edge Computing</b></div>
+        <div class="kw">KEYWORDS <b>Autonomous Control • Multi-Agent • Neuromorphic Edge AI</b></div>
       </div>
     </div>
   </div>
@@ -500,12 +528,23 @@
     <div style="margin-top:46px">
       <span class="eyebrow">Research Keywords</span>
       <div class="methods">
-        <span class="method">Building Cognition</span><span class="method">Autonomous Building</span><span class="method">Building Intelligence</span>
-        <span class="method">Digital Twin</span><span class="method">BIM</span><span class="method">Knowledge Graph</span>
-        <span class="method">AI Agent</span><span class="method">EnergyPlus</span><span class="method">BEM</span>
-        <span class="method">CFD</span><span class="method">ERV</span><span class="method">Building Energy</span><span class="method">Indoor Environmental Quality</span>
-        <span class="method">Carbon Neutrality</span><span class="method">Physics-informed AI</span><span class="method">Smart Operation</span>
-        <span class="method">Building Analytics</span><span class="method">Digital Engineering</span><span class="method">M&V</span>
+        <span class="method hl">Building Cognition</span><span class="method hl">Building Intelligence</span><span class="method hl">Autonomous Building</span>
+        <span class="method">Building Environmental Sensing</span><span class="method">In-situ Measurement</span><span class="method">BEMS</span><span class="method">BAS</span><span class="method">Occupant Human Performance</span><span class="method">M&V</span><span class="method">MRV</span>
+        <span class="method">BIM</span><span class="method">Digital Twin</span><span class="method">Digital Engineering</span>
+        <span class="method">Building Energy</span><span class="method">EnergyPlus</span><span class="method">BEM</span><span class="method">CFD</span><span class="method">ERV</span><span class="method">Thermal Comfort</span><span class="method">Indoor Environmental Quality</span><span class="method">Carbon Neutrality</span><span class="method">LCA</span>
+        <span class="method">Knowledge Graph</span><span class="method">Ontology</span><span class="method">Semantic Reasoning</span>
+        <span class="method">AI Agent</span><span class="method">Foundation Models</span><span class="method">LLMs for Buildings</span><span class="method">Reinforcement Learning</span><span class="method">Fault Detection &amp; Diagnostics</span><span class="method">Building Analytics</span>
+        <span class="method">Multi-Agent Systems</span><span class="method">Edge AI</span><span class="method">Neuromorphic AI</span><span class="method">Smart Operation</span>
+        <span class="method">Physics-informed AI</span><span class="method">Neuroscience-inspired AI</span><span class="method">Zero-Energy Building</span><span class="method">Green Remodeling</span>
+      </div>
+
+      <div style="margin-top:44px">
+        <span class="eyebrow">Knowledge Graph</span>
+        <p class="lead" style="font-size:15px;max-width:760px;margin-bottom:16px">A living map of BCL's research — keywords linked across the six-stage cognitive loop <b style="color:var(--acc3)">Sense &rarr; Represent &rarr; Simulate &rarr; Cognize &rarr; Decide &rarr; Act</b>. Drag a node to explore; hover to trace its connections.</p>
+        <div id="kg-legend" style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:12px;font-size:12.5px;color:var(--muted)"></div>
+        <div style="border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--panel2),var(--panel));overflow:hidden">
+          <svg id="kg" viewBox="0 0 1000 620" width="100%" style="display:block;touch-action:none;cursor:default"></svg>
+        </div>
       </div>
     </div>
   </div>
@@ -589,7 +628,7 @@
     <h2 class="title">A New Scientific Discipline for Intelligent Buildings</h2>
     <div class="vision">
       <p>BCL seeks to establish <strong style="color:var(--txt)">Building Cognition</strong> as a new scientific discipline for intelligent buildings.</p>
-      <p>By integrating digital twins, artificial intelligence, semantic knowledge, and physics-based simulation, BCL aims to develop the cognitive foundation that enables fully autonomous, sustainable, and human-centric buildings.</p>
+      <p>By integrating digital twins, lightweight AI models for edge devices, building energy and environmental knowledge graphs, and physics-based simulation, BCL aims to develop the cognitive foundation that enables fully autonomous, sustainable, and human-centric buildings.</p>
       <div class="motto">Empowering Buildings to <span class="grad">Perceive, Reason, and Act.</span></div>
     </div>
   </div>
@@ -607,16 +646,24 @@
       <div class="prof-card">
         <div class="avatar"><img src="img/professor/JH.webp" alt="Jonghun KIM"></div>
         <div class="nm">Jonghun KIM, Ph.D.</div>
-        <div class="rl">Professor</div>
+        <div class="rl">Director, Building Cognition Lab</div>
         <div class="org">
-          Department of Energy Engineerging, University of Science &amp; Technology (UST)<br><br>
-          Principal Researcher & Head, Building Energy Group<br>
-          Korea Institute of Energy Research (KIER)<br>
+          Professor<br>
+          Department of Architectural Engineering<br>
+          Dong-A University &middot; 2026&ndash;present<br>
+          <div style="height:1px;background:linear-gradient(90deg,transparent,var(--line2) 8%,var(--line2) 92%,transparent);margin:18px auto 16px;width:100%"></div>
+          <div style="color:var(--muted2);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Formerly</div>
+          Professor<br>
+          University of Science &amp; Technology<br>
+          UST &middot; 2021&ndash;2026<br><br>
+          Principal Researcher<br>
+          Korea Institute of Energy Research<br>
+          KIER &middot; 2012&ndash;2026<br><br>
           <a href="mailto:jonghun@kier.re.kr" style="color:var(--acc2)">jonghun@kier.re.kr</a>
         </div>
       </div>
       <div class="prof-bio">
-        <p>Dr. Jonghun Kim is the founding director of the Building Cognition Lab and serves as Head of the Building Energy Group at the Korea Institute of Energy Research (KIER) and Professor of Energy Engineering at the University of Science &amp; Technology (UST).</p>
+        <p>Dr. Jonghun Kim is the founding director of the Building Cognition Lab and Professor in the Department of Architectural Engineering at Dong-A University. He previously served as Professor at the University of Science &amp; Technology (UST, 2021&ndash;2026) and as Principal Researcher and Head of the Building Energy Group at the Korea Institute of Energy Research (KIER, 2012&ndash;2026).</p>
         <p>As a <strong style="color:var(--acc3)">Japanese Government (MEXT) Scholarship student</strong>, he studied at the University of Tokyo, where he earned his Ph.D. in Architectural Environment Engineering (energy &amp; indoor air quality) in 2011.</p>
         <p>His research bridges building physics, indoor environmental quality, and artificial intelligence &mdash; advancing digital twins, building knowledge graphs, and physics-informed AI toward fully autonomous buildings. He holds international credentials including Certified Passive House Designer and Certified Measurement &amp; Verification Professional.</p>
         <p>In recognition of his contributions to the nation's building energy and carbon-neutrality agenda, he has been honored with <strong style="color:var(--acc3)">four Ministerial Commendations</strong> from the Korean government &mdash; awarded by the Ministers of Land, Infrastructure and Transport, Science and ICT, and Trade, Industry and Energy &mdash; among numerous other national and academic awards.</p>
@@ -657,18 +704,18 @@
             <tr><td class="yr">2025.06.20</td><td class="aw">Best Presentation Paper Award, Summer Annual Conference</td><td class="by">SAREK</td></tr>
             <tr><td class="yr">2025.06.19</td><td class="aw">Best Paper Award, Summer Annual Conference</td><td class="by">SAREK</td></tr>
             <tr><td class="yr">2023.12.31</td><td class="aw">Commendation (President of KIER)</td><td class="by">KIER</td></tr>
-            <tr><td class="yr">2023.12.20</td><td class="aw">Commendation (Minister of Land, Infrastructure and Transport) <span class="medal">🎖️</span></td><td class="by">MOLIT</td></tr>
+            <tr><td class="yr">2023.12.20</td><td class="aw">Commendation (Minister of Land, Infrastructure and Transport)&nbsp;<span class="medal">🎖️</span></td><td class="by">MOLIT</td></tr>
             <tr><td class="yr">2023.12.13</td><td class="aw">President's Award (President of KIER)</td><td class="by">KIER</td></tr>
             <tr><td class="yr">2023.09.07</td><td class="aw">Commendation (President of KIER)</td><td class="by">KIER</td></tr>
             <tr><td class="yr">2022.12.31</td><td class="aw">Commendation (President of KIER)</td><td class="by">KIER</td></tr>
             <tr><td class="yr">2022.12.16</td><td class="aw">Commendation (President of KIER)</td><td class="by">KIER</td></tr>
             <tr><td class="yr">2022.09.07</td><td class="aw">Commendation (President of KIER)</td><td class="by">KIER</td></tr>
-            <tr><td class="yr">2022.02.15</td><td class="aw">Commendation (Minister of Science and ICT) <span class="medal">🎖️</span></td><td class="by">MSIT</td></tr>
+            <tr><td class="yr">2022.02.15</td><td class="aw">Commendation (Minister of Science and ICT)&nbsp;<span class="medal">🎖️</span></td><td class="by">MSIT</td></tr>
             <tr><td class="yr">2021.12.31</td><td class="aw">Commendation (President of KIER)</td><td class="by">KIER</td></tr>
             <tr><td class="yr">2020.12.31</td><td class="aw">Commendation (President of KIER)</td><td class="by">KIER</td></tr>
-            <tr><td class="yr">2020.12.22</td><td class="aw">Commendation (Minister of Trade, Industry and Energy) <span class="medal">🎖️</span></td><td class="by">MOTIE</td></tr>
+            <tr><td class="yr">2020.12.22</td><td class="aw">Commendation (Minister of Trade, Industry and Energy)&nbsp;<span class="medal">🎖️</span></td><td class="by">MOTIE</td></tr>
             <tr><td class="yr">2019.12.31</td><td class="aw">Commendation (President of KIER)</td><td class="by">KIER</td></tr>
-            <tr><td class="yr">2019.12.31</td><td class="aw">Commendation (Minister of Land, Infrastructure and Transport) <span class="medal">🎖️</span></td><td class="by">MOLIT</td></tr>
+            <tr><td class="yr">2019.12.31</td><td class="aw">Commendation (Minister of Land, Infrastructure and Transport)&nbsp;<span class="medal">🎖️</span></td><td class="by">MOLIT</td></tr>
             <tr><td class="yr">2019.04.05</td><td class="aw">Best Presentation Paper Award, Spring Annual Conference</td><td class="by">KSES</td></tr>
             <tr><td class="yr">2019.03.14</td><td class="aw">Commendation (Mayor of Seoul)</td><td class="by">Seoul Metropolitan Gov.</td></tr>
             <tr><td class="yr">2018.12.31</td><td class="aw">Commendation (President of KIER)</td><td class="by">KIER</td></tr>
@@ -711,6 +758,74 @@
     <div class="muted" style="margin-top:28px">&copy; 2026 Building Cognition Lab &mdash; Jonghun KIM. All rights reserved.</div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var svg=document.getElementById('kg'); if(!svg) return;
+  var NS='http://www.w3.org/2000/svg', W=1000, H=620;
+  var C={core:'#93a4ff', sense:'#34d399', rep:'#22d3ee', sim:'#38bdf8', dec:'#818cf8', act:'#c084fc'};
+  var CL=[['sense','01 Sense'],['rep','02 Represent'],['sim','03 Simulate'],['core','04 Cognize'],['dec','05 Decide'],['act','06 Act']];
+  var N=[], idx={};
+  function add(id,label,c,hub){ idx[id]=N.length; N.push({id:id,label:label,c:c,hub:!!hub,x:W/2+(Math.random()-.5)*360,y:H/2+(Math.random()-.5)*220,vx:0,vy:0,fixed:false}); }
+  add('BC','Building Cognition','core',true);
+  add('SEN','Environmental Sensing','sense',true);
+  add('REP','Digital Representation','rep',true);
+  add('SIM','Performance Simulation','sim',true);
+  add('INT','Building Intelligence','dec',true);
+  add('AUT','Autonomous Operation','act',true);
+  var K={
+    s:['BEMS','BAS','IAQ Monitoring','In-situ Measurement','Occupancy & Human Performance','IoT & Virtual Sensors','U-value','Airtightness','M&V','MRV'],
+    r:['BIM','IFC','Digital Twin','Building Metadata','Geometry Processing','BIM2Everything','Digital Engineering'],
+    m:['EnergyPlus','BEM','CFD','ERV','Thermal Comfort','Indoor Env. Quality','Fire & Evacuation','LCA','Carbon Neutrality','Demand Response'],
+    c:['Knowledge Graph','Ontology (Brick/REC)','Semantic Reasoning','Context Modeling','Knowledge Representation'],
+    i:['AI Agents','Reinforcement Learning','Foundation Models','LLMs for Buildings','Predictive Analytics','Fault Detection & Diagnostics','Occupancy Modeling'],
+    a:['Autonomous Control','Multi-Agent Systems','Neuromorphic Edge AI','Human-in-the-loop Control','Embedded Systems','Smart Operation']
+  };
+  var cc={s:'sense',r:'rep',m:'sim',c:'core',i:'dec',a:'act'};
+  for(var p in K){ K[p].forEach(function(k){ add(p+'_'+k,k,cc[p]); }); }
+  add('x_pi','Physics-informed AI','core'); add('x_ns','Neuroscience-inspired AI','core');
+  add('x_zeb','Zero-Energy Building','sim'); add('x_gr','Green Remodeling','rep');
+  var L=[]; function link(a,b){ if(idx[a]==null||idx[b]==null) return; L.push({s:idx[a],t:idx[b]}); }
+  link('SEN','REP');link('REP','SIM');link('SIM','BC');link('BC','INT');link('INT','AUT');link('AUT','SEN');
+  ['SEN','REP','SIM','INT','AUT'].forEach(function(h){link('BC',h);});
+  var hubmap={s:'SEN',r:'REP',m:'SIM',c:'BC',i:'INT',a:'AUT'};
+  N.forEach(function(n){ if(n.hub) return; var p=n.id.split('_')[0]; if(hubmap[p]) link(hubmap[p],n.id); });
+  link('BC','x_pi');link('SIM','x_pi');link('BC','x_ns');link('SIM','x_zeb');link('REP','x_gr');link('SEN','x_gr');
+  var nb=N.map(function(){return {};}); L.forEach(function(e){ nb[e.s][e.t]=1; nb[e.t][e.s]=1; });
+  function mk(t){return document.createElementNS(NS,t);}
+  var edgeG=mk('g'), nodeG=mk('g'); svg.appendChild(edgeG); svg.appendChild(nodeG);
+  var lines=L.map(function(e){ var ln=mk('line'); ln.setAttribute('stroke','rgba(255,255,255,.12)'); ln.setAttribute('stroke-width',(N[e.s].hub&&N[e.t].hub)?1.6:0.8); edgeG.appendChild(ln); return ln; });
+  var gEls=N.map(function(n){
+    var g=mk('g'); g.style.cursor='grab';
+    var r=n.hub?11:6; var c=mk('circle'); c.setAttribute('r',r); c.setAttribute('fill',C[n.c]); c.setAttribute('stroke','rgba(0,0,0,.4)'); c.setAttribute('stroke-width',n.hub?2:1);
+    var t=mk('text'); t.textContent=n.label; t.setAttribute('x',r+4); t.setAttribute('y',3.6); t.setAttribute('font-size',n.hub?12.5:10); t.setAttribute('font-weight',n.hub?'600':'500'); t.setAttribute('fill','#fff'); t.setAttribute('paint-order','stroke'); t.setAttribute('stroke','rgba(0,0,0,.6)'); t.setAttribute('stroke-width','2.6'); t.setAttribute('stroke-linejoin','round');
+    g.appendChild(c); g.appendChild(t); nodeG.appendChild(g); n._c=c; n._t=t; n._g=g; return g;
+  });
+  function render(){ for(var k=0;k<L.length;k++){ var e=L[k],a=N[e.s],b=N[e.t]; var ln=lines[k]; ln.setAttribute('x1',a.x);ln.setAttribute('y1',a.y);ln.setAttribute('x2',b.x);ln.setAttribute('y2',b.y);} for(var i=0;i<N.length;i++){ gEls[i].setAttribute('transform','translate('+N[i].x.toFixed(1)+','+N[i].y.toFixed(1)+')'); } }
+  var alpha=1, raf;
+  function tick(){
+    for(var i=0;i<N.length;i++){ for(var j=i+1;j<N.length;j++){ var a=N[i],b=N[j],dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+0.01,d=Math.sqrt(d2),rep=2700/d2,fx=dx/d*rep,fy=dy/d*rep; a.vx+=fx;a.vy+=fy;b.vx-=fx;b.vy-=fy; } }
+    L.forEach(function(e){ var a=N[e.s],b=N[e.t],dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)+0.01,len=(a.hub&&b.hub)?155:80,k=0.018*(d-len)/d,fx=dx*k,fy=dy*k; a.vx+=fx;a.vy+=fy;b.vx-=fx;b.vy-=fy; });
+    N.forEach(function(n){ n.vx+=(W/2-n.x)*0.0022; n.vy+=(H/2-n.y)*0.0022; });
+    N.forEach(function(n){ if(n.fixed) return; n.vx*=0.86; n.vy*=0.86; n.x+=n.vx*alpha; n.y+=n.vy*alpha; n.x=Math.max(34,Math.min(W-34,n.x)); n.y=Math.max(26,Math.min(H-26,n.y)); });
+    render(); alpha*=0.994; if(alpha<0.04) alpha=0.04; raf=requestAnimationFrame(tick);
+  }
+  tick();
+  function hi(i){ for(var j=0;j<N.length;j++){ var on=(j===i||nb[i][j]); gEls[j].style.opacity=on?1:0.18; } for(var k=0;k<L.length;k++){ var e=L[k]; lines[k].style.opacity=(e.s===i||e.t===i)?0.9:0.05; } }
+  function clr(){ for(var j=0;j<N.length;j++) gEls[j].style.opacity=1; for(var k=0;k<L.length;k++) lines[k].style.opacity=1; }
+  var pt=svg.createSVGPoint(); function toSVG(ev){ pt.x=ev.clientX; pt.y=ev.clientY; var p=pt.matrixTransform(svg.getScreenCTM().inverse()); return p; }
+  var drag=null;
+  gEls.forEach(function(g,i){
+    g.addEventListener('pointerover',function(){ if(!drag) hi(i); });
+    g.addEventListener('pointerout',function(){ if(!drag) clr(); });
+    g.addEventListener('pointerdown',function(ev){ drag=i; g.setPointerCapture(ev.pointerId); g.style.cursor='grabbing'; N[i].fixed=true; hi(i); ev.preventDefault(); });
+    g.addEventListener('pointermove',function(ev){ if(drag!==i) return; var p=toSVG(ev); N[i].x=p.x; N[i].y=p.y; N[i].vx=0; N[i].vy=0; alpha=Math.max(alpha,0.35); });
+    g.addEventListener('pointerup',function(ev){ if(drag===i){ N[i].fixed=false; drag=null; g.style.cursor='grab'; clr(); } });
+  });
+  var lg=document.getElementById('kg-legend');
+  if(lg){ CL.forEach(function(p){ var s=document.createElement('span'); s.style.display='inline-flex'; s.style.alignItems='center'; s.style.gap='6px'; s.innerHTML='<span style="width:11px;height:11px;border-radius:50%;background:'+C[p[0]]+';display:inline-block"></span>'+p[1]; lg.appendChild(s); }); }
+})();
+</script>
 
 </body>
 </html>
