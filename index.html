@@ -139,6 +139,9 @@
   .methods{display:flex;flex-wrap:wrap;gap:11px;margin-top:34px}
   .method{padding:11px 18px;border-radius:10px;background:var(--panel);border:1px solid var(--line2);font-size:14.5px;font-weight:500}
   .method.hl{background:linear-gradient(135deg,var(--acc),#0f1e78);border-color:rgba(255,255,255,.18);color:#fff;font-weight:600;box-shadow:0 8px 22px rgba(20,40,160,.4)}
+  #wcloud text{will-change:transform}
+  @keyframes wcfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  @media(prefers-reduced-motion:reduce){#wcloud text{animation:none!important}}
   .kg-hub{animation:kgpulse 5s ease-in-out infinite}
   @keyframes kgpulse{0%,100%{filter:drop-shadow(0 0 3px var(--glow));stroke-opacity:.6}50%{filter:drop-shadow(0 0 18px var(--glow)) drop-shadow(0 0 8px var(--glow));stroke-opacity:1}}
   @media(prefers-reduced-motion:reduce){.kg-hub{animation:none}}
@@ -505,7 +508,11 @@
       </div>
     </div>
 
-    <span class="pill">▴ FROM PROVEN FOUNDATIONS TO AUTONOMOUS BUILDINGS</span>
+    <div style="margin-top:40px">
+      <div style="border:1px solid var(--line);border-radius:16px;background:radial-gradient(120% 90% at 50% 45%,#0a0a0f,#000 82%);overflow:hidden">
+        <svg id="wcloud" viewBox="0 0 1000 560" width="100%" style="display:block"></svg>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -870,6 +877,58 @@
   svg.addEventListener('pointerup',function(){ dragging=false; svg.style.cursor='grab'; });
   svg.addEventListener('pointercancel',function(){ dragging=false; svg.style.cursor='grab'; });
   svg.addEventListener('click',function(ev){ if(!moved && ev.target===svg) hov=-1; });
+})();
+</script>
+
+<script>
+(function(){
+  var svg=document.getElementById('wcloud'); if(!svg) return;
+  var NS='http://www.w3.org/2000/svg', W=1000, H=560, cx=W/2, cy=H/2;
+  function lerp(a,b,t){ return Math.round(a+(b-a)*t); }
+  function col(n){ n=Math.max(0,Math.min(1,n)); var c=Math.pow(n,1.3);
+    var r=lerp(96,214,c), g=lerp(112,236,c), b=lerp(160,255,c);
+    return 'rgb('+r+','+g+','+b+')'; }
+  var words=[
+    ['Building Energy',10],['Indoor Air Quality',9],['Zero-Energy Building',9],['Carbon Neutrality',8],['Energy Efficiency',8],
+    ['Thermal Performance',8],['Digital Twin',7],['Green Remodeling',7],['Ventilation',7],['In-situ Measurement',7],
+    ['Heat Pump',6],['Passive House',6],['EnergyPlus',6],['CFD',6],['ERV',6],['Knowledge Graph',6],['AI Agent',6],
+    ['BIM',6],['Demand Response',6],['Thermal Comfort',6],['Germicidal UVGI',6],['Insulation',6],['Machine Learning',6],
+    ['Indoor Environment',6],['Energy Consumption',6],['U-value',5],['Airtightness',5],['Heat Flux',5],['BEMS',5],
+    ['IoT Sensing',5],['Fault Detection',5],['Predictive Control',5],['Biosensor',5],['Photothermal Filter',5],
+    ['Occupant Productivity',5],['Low-income Households',5],['Physics-informed AI',5],['Data-driven',5],['LLM / GPT-4o',5],
+    ['Apartment',5],['Office Building',5],['Residential',5],['Odor / Olfactometry',4],['Triboelectric Sensor',4],
+    ['Weatherization',4],['IFC',4],['Window',4],['Radiation',4],['Hospital',4],['Temperature',4],['Microwave Heating',3],['G-SEED',4],['M&V',4],['ISO TC163',3]
+  ];
+  words.sort(function(a,b){return b[1]-a[1];});
+  var mn=words[words.length-1][1], mx=words[0][1];
+  function fs(w){ return 12 + Math.pow((w-mn)/((mx-mn)||1),1.9)*56; }
+  var placed=[];
+  function hit(a,b){ return !(a.x+a.w<b.x||b.x+b.w<a.x||a.y+a.h<b.y||b.y+b.h<a.y); }
+  words.forEach(function(it,idx){
+    var t=document.createElementNS(NS,'text');
+    t.textContent=it[0]; t.setAttribute('font-size',fs(it[1]).toFixed(1));
+    t.setAttribute('font-weight', it[1]>=7?'600':(it[1]>=5?'500':'400'));
+    t.setAttribute('fill',col((it[1]-mn)/((mx-mn)||1))); t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','middle');
+    svg.appendChild(t);
+    var bb=t.getBBox(), w=bb.width+12, h=bb.height+6;
+    var a=Math.random()*6.28, r=0, x=cx, y=cy, ok=false, rect;
+    for(var k=0;k<3000;k++){
+      x=cx+r*Math.cos(a); y=cy+r*Math.sin(a)*0.6;
+      rect={x:x-w/2,y:y-h/2,w:w,h:h};
+      var bad=(rect.x<6||rect.y<6||rect.x+rect.w>W-6||rect.y+rect.h>H-6);
+      if(!bad){ bad=false; for(var p=0;p<placed.length;p++){ if(hit(rect,placed[p])){bad=true;break;} } }
+      if(!bad){ ok=true; break; }
+      a+=0.35; r+=0.75;
+    }
+    if(!ok){ svg.removeChild(t); return; }
+    placed.push(rect);
+    t.setAttribute('x',x.toFixed(1)); t.setAttribute('y',y.toFixed(1));
+    t.style.transformBox='fill-box'; t.style.transformOrigin='center';
+    t.style.animation='wcfloat '+(5+Math.random()*4).toFixed(1)+'s ease-in-out infinite';
+    t.style.animationDelay=(Math.random()*5).toFixed(1)+'s';
+    t.style.opacity='0'; t.style.transition='opacity .6s ease';
+    (function(el,base){ setTimeout(function(){ el.style.opacity=base; }, idx*30); })(t, it[1]>=6?'1':'0.82');
+  });
 })();
 </script>
 
