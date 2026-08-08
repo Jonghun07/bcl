@@ -29,7 +29,7 @@
     border:1px solid rgba(20,40,160,.3);padding:8px 18px;border-radius:999px;margin-bottom:22px;
   }
   h2.title{font-size:clamp(28px,4vw,42px);font-weight:650;letter-spacing:-.02em;margin-bottom:16px}
-  .lead{color:var(--muted);font-size:18px;max-width:760px}
+  .lead{color:var(--muted);font-size:18px;max-width:none}
   .grad{background:linear-gradient(100deg,#2b49cb,#4fbfb8 12.5%,#8093d5 25%,#3a9d97 37.5%,#2b49cb 50%,#4fbfb8 62.5%,#8093d5 75%,#3a9d97 87.5%,#2b49cb);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 4s linear infinite}
   @media(prefers-reduced-motion:reduce){.grad{animation:none}}
 
@@ -54,7 +54,7 @@
   .hero h1 .l2{display:block;padding-bottom:.12em;background:linear-gradient(100deg,#2b49cb,#4fbfb8 12.5%,#8093d5 25%,#3a9d97 37.5%,#2b49cb 50%,#4fbfb8 62.5%,#8093d5 75%,#3a9d97 87.5%,#2b49cb);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 4s linear infinite}
   @keyframes flow{to{background-position:-200% 50%}}
   @media(prefers-reduced-motion:reduce){.hero h1 .l2{animation:none}}
-  .hero p.lead{margin:26px auto 0;text-align:center}
+  .hero p.lead{margin:26px auto 0;text-align:center;max-width:760px}
   .cta{display:flex;gap:16px;justify-content:center;margin-top:38px;flex-wrap:wrap}
   .btn{padding:15px 30px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;border:1px solid transparent;transition:transform .15s,box-shadow .15s}
   .btn:hover{transform:translateY(-2px)}
@@ -140,7 +140,7 @@
   .pipe{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
   .step{background:var(--bg2);border:1px solid var(--line2);border-radius:10px;padding:11px 16px;font-size:14px;font-weight:600}
   .step.io{background:rgba(20,40,160,.14);border-color:rgba(20,40,160,.35);color:var(--acc3)}
-  .pa{color:var(--acc);font-size:16px}
+  .pa{color:#8aa0ff;font-size:18px;font-weight:700}
   .b2e .note{margin-top:24px;color:var(--muted);font-size:15px;border-left:3px solid var(--acc);padding-left:16px}
 
   /* METHODS / KEYWORDS */
@@ -286,7 +286,7 @@
   <div class="wrap">
     <span class="eyebrow">About BCL</span>
     <h2 class="title">Building the <span class="grad">Cognitive Brain of Future Buildings</span></h2>
-    <p class="lead">BCL aims to establish <strong style="color:var(--txt)">Building Cognition</strong> as a new interdisciplinary research paradigm that bridges architecture, building engineering, artificial intelligence, and digital-twin technologies.</p>
+    <p class="lead" style="max-width:none">BCL aims to establish <strong style="color:var(--txt)">Building Cognition</strong> as a new interdisciplinary research paradigm that bridges architecture, building engineering, artificial intelligence, and digital-twin technologies.</p>
 
     <div class="two">
       <div class="about">
@@ -532,7 +532,7 @@
   <div class="wrap">
     <span class="eyebrow">Platform</span>
     <h2 class="title">BIM2Everything</h2>
-    <p class="lead">BIM2Everything(B2E) is the digital research platform for developing, validating, and deploying Building Cognition.</p>
+    <p class="lead" style="max-width:none">BIM2Everything(B2E) is the digital research platform for developing, validating, and deploying Building Cognition.</p>
 
     <div class="b2e-row">
       <img class="b2e-pic2" src="img/platform/B2E.webp" alt="BIM2Everything (B2E)">
@@ -550,14 +550,6 @@
             <li>Building energy &amp; environmental knowledge graphs for reasoning</li>
             <li>AI-agent-driven analysis, diagnostics, and automated reporting</li>
           </ul>
-        </div>
-        <div class="prd-item">
-          <span class="prd-k">Inputs &rarr; Outputs</span>
-          <p>BIM/IFC + weather (EPW) + operational data &nbsp;&rarr;&nbsp; energy, CFD, thermal comfort, carbon (LCA), fire &amp; evacuation, and a consolidated report.</p>
-        </div>
-        <div class="prd-item">
-          <span class="prd-k">Users</span>
-          <p>Building researchers, energy assessors, designers, and operators pursuing evidence-based, autonomous buildings.</p>
         </div>
       </div>
     </div>
@@ -709,6 +701,7 @@
           <div style="height:1px;background:linear-gradient(90deg,transparent,var(--line2) 8%,var(--line2) 92%,transparent);margin:18px auto 16px;width:100%"></div>
           <div style="color:var(--muted2);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Contact</div>
           <a href="mailto:jonghun07@gmail.com" style="color:var(--acc2)">jonghun07@gmail.com</a>
+          <img src="img/contact/contact_qr.webp" alt="Scan for Building Cognition Lab website" style="display:block;width:60%;margin:16px auto 0;border-radius:12px">
         </div>
       </div>
       <div class="prof-bio">
