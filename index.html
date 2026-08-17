@@ -85,11 +85,20 @@
   .logo-note{display:flex;align-items:flex-start;gap:30px;margin-top:42px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:26px 30px}
   .logo-mark{flex:0 0 auto;margin-top:34px;text-align:center}
   .logo-cap{width:88px;margin:4px auto 0;font-size:49px;font-weight:500;letter-spacing:0;line-height:1;color:#fff;text-align:left;text-indent:-2px}
-  .logo-sub{width:88px;margin:3px auto 0;font-size:10.5px;font-weight:500;letter-spacing:.005em;color:var(--muted);white-space:nowrap;text-align:center}
+  .logo-sub{width:88px;margin:0 auto 0;font-size:9.8px;font-weight:500;letter-spacing:.01em;color:var(--muted);white-space:nowrap;text-align:center}
   .logo-mark svg{width:88px;height:88px;display:block;border-radius:0;box-shadow:0 8px 26px rgba(20,40,160,.4)}
   .logo-txt p{color:var(--muted);font-size:15px;margin-bottom:10px}
   .logo-txt p:last-child{margin-bottom:0}
   @media(max-width:640px){.logo-note{flex-direction:column;align-items:flex-start;gap:18px}}
+
+  /* ACTIVITIES GALLERY */
+  .act-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px}
+  .act-item{margin:0}
+  .act-item img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;border:1px solid var(--line);filter:grayscale(1) brightness(.45);transition:filter .4s ease,transform .3s ease,box-shadow .3s ease;display:block}
+  .act-item:hover img{filter:grayscale(0);transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+  .act-item figcaption{margin-top:9px;font-size:13px;color:var(--muted);text-align:center;line-height:1.45}
+  .act-date{display:block;font-size:11px;color:var(--muted2);margin-top:2px;letter-spacing:.02em}
+  @media(max-width:640px){.act-grid{grid-template-columns:repeat(2,1fr)}}
 
   /* THEMES */
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:40px}
@@ -251,6 +260,7 @@
         <a href="#foundation">Foundations</a>
         <a href="#platform">Platform</a>
         <a href="#publications">Publications</a>
+        <a href="#activities">Activities</a>
         <a href="#professor">Professor</a>
       </div>
     </nav>
@@ -672,6 +682,18 @@
 
 <div class="wrap"><div class="divider"></div></div>
 
+<!-- ACTIVITIES -->
+<section id="activities" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow">Activities</span>
+    <h2 class="title">Lectures, Visits &amp; Engagement</h2>
+    <p class="lead">Moments from invited lectures, international visits, and policy engagement &mdash; newest first.</p>
+    <div id="act-grid" class="act-grid"></div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
 <!-- PROFESSOR -->
 <section id="professor" style="padding-top:0">
   <div class="wrap">
@@ -684,6 +706,7 @@
         <div class="nm">Jonghun KIM, Ph.D.</div>
         <div class="rl">Director, Building Cognition Lab</div>
         <div class="org">
+          <div style="height:1px;background:linear-gradient(90deg,transparent,var(--line2) 8%,var(--line2) 92%,transparent);margin:2px auto 16px;width:100%"></div>
           <strong style="color:var(--txt);font-weight:700">Professor</strong><br>
           Department of Architectural Engineering<br>
           Dong-A University<br>
@@ -699,13 +722,53 @@
           Korea Institute of Energy Research<br>
           KIER &middot; 2012&ndash;2026<br>
           <div style="height:1px;background:linear-gradient(90deg,transparent,var(--line2) 8%,var(--line2) 92%,transparent);margin:18px auto 16px;width:100%"></div>
+          <div style="color:var(--muted2);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Education</div>
+          <strong style="color:var(--txt);font-weight:700">Ph.D., Architectural Engineering</strong><br>
+          The University of Tokyo, Japan &middot; 2011<br>
+          <div style="height:1px;background:linear-gradient(90deg,transparent,var(--line2) 8%,var(--line2) 92%,transparent);margin:18px auto 16px;width:100%"></div>
+          <div style="color:var(--muted2);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px">Multilingual</div>
+          <div style="display:grid;grid-template-columns:auto auto;justify-content:center;gap:10px 22px">
+            <span style="display:inline-flex;align-items:center;gap:7px">
+              <svg viewBox="0 0 30 20" width="22" height="14.7" style="border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.14);flex:0 0 auto">
+                <rect width="30" height="20" fill="#fff"/>
+                <g transform="rotate(45 15 10)">
+                <path d="M10 10 A2.5 2.5 0 0 0 15 10 A2.5 2.5 0 0 1 20 10 A5 5 0 0 1 10 10 Z" fill="#0047a0"/>
+                <path d="M10 10 A2.5 2.5 0 0 0 15 10 A2.5 2.5 0 0 1 20 10 A5 5 0 0 0 10 10 Z" fill="#cd2e3a"/></g>
+                <g fill="#000">
+                <g transform="rotate(123 6.5 5)"><rect x="4" y="3.5" width="5" height=".8"/><rect x="4" y="4.6" width="5" height=".8"/><rect x="4" y="5.7" width="5" height=".8"/></g>
+                <g transform="rotate(57 23.5 5)"><rect x="21" y="3.5" width="2.1" height=".8"/><rect x="23.9" y="3.5" width="2.1" height=".8"/><rect x="21" y="4.6" width="5" height=".8"/><rect x="21" y="5.7" width="2.1" height=".8"/><rect x="23.9" y="5.7" width="2.1" height=".8"/></g>
+                <g transform="rotate(57 6.5 15)"><rect x="4" y="13.5" width="5" height=".8"/><rect x="4" y="14.6" width="2.1" height=".8"/><rect x="6.9" y="14.6" width="2.1" height=".8"/><rect x="4" y="15.7" width="5" height=".8"/></g>
+                <g transform="rotate(123 23.5 15)"><rect x="21" y="13.5" width="2.1" height=".8"/><rect x="23.9" y="13.5" width="2.1" height=".8"/><rect x="21" y="14.6" width="2.1" height=".8"/><rect x="23.9" y="14.6" width="2.1" height=".8"/><rect x="21" y="15.7" width="2.1" height=".8"/><rect x="23.9" y="15.7" width="2.1" height=".8"/></g></g>
+              </svg>Korean</span>
+            <span style="display:inline-flex;align-items:center;gap:7px">
+              <svg viewBox="0 0 30 20" width="22" height="14.7" style="border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.14);flex:0 0 auto">
+                <rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/>
+              </svg>Japanese</span>
+            <span style="display:inline-flex;align-items:center;gap:7px">
+              <svg viewBox="0 0 30 20" width="22" height="14.7" style="border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.14);flex:0 0 auto">
+                <rect width="30" height="20" fill="#b22234"/>
+                <g fill="#fff"><rect y="1.54" width="30" height="1.54"/><rect y="4.62" width="30" height="1.54"/><rect y="7.69" width="30" height="1.54"/><rect y="10.77" width="30" height="1.54"/><rect y="13.85" width="30" height="1.54"/><rect y="16.92" width="30" height="1.54"/></g>
+                <rect width="12" height="10.77" fill="#3c3b6e"/>
+                <g fill="#fff"><circle cx="2.4" cy="2" r=".5"/><circle cx="6" cy="2" r=".5"/><circle cx="9.6" cy="2" r=".5"/><circle cx="4.2" cy="4.4" r=".5"/><circle cx="7.8" cy="4.4" r=".5"/><circle cx="2.4" cy="6.8" r=".5"/><circle cx="6" cy="6.8" r=".5"/><circle cx="9.6" cy="6.8" r=".5"/><circle cx="4.2" cy="9" r=".5"/><circle cx="7.8" cy="9" r=".5"/></g>
+              </svg>English</span>
+            <span style="display:inline-flex;align-items:center;gap:7px">
+              <svg viewBox="0 0 30 20" width="22" height="14.7" style="border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.14);flex:0 0 auto">
+                <rect width="30" height="20" fill="#de2910"/>
+                <polygon fill="#ffde00" points="6,2.8 6.718,5.011 9.043,5.011 7.162,6.378 7.881,8.589 6,7.222 4.119,8.589 4.838,6.378 2.957,5.011 5.282,5.011"/>
+                <polygon fill="#ffde00" points="12,1.2 12.2245,1.891 12.951,1.891 12.363,2.318 12.5878,3.009 12,2.582 11.4122,3.009 11.637,2.318 11.049,1.891 11.7755,1.891"/>
+                <polygon fill="#ffde00" points="14.6,3.2 14.8245,3.891 15.551,3.891 14.963,4.318 15.1878,5.009 14.6,4.582 14.0122,5.009 14.237,4.318 13.649,3.891 14.3755,3.891"/>
+                <polygon fill="#ffde00" points="14.6,6.2 14.8245,6.891 15.551,6.891 14.963,7.318 15.1878,8.009 14.6,7.582 14.0122,8.009 14.237,7.318 13.649,6.891 14.3755,6.891"/>
+                <polygon fill="#ffde00" points="12,8.2 12.2245,8.891 12.951,8.891 12.363,9.318 12.5878,10.009 12,9.582 11.4122,10.009 11.637,9.318 11.049,8.891 11.7755,8.891"/>
+              </svg>Chinese</span>
+          </div>
+          <div style="height:1px;background:linear-gradient(90deg,transparent,var(--line2) 8%,var(--line2) 92%,transparent);margin:18px auto 16px;width:100%"></div>
           <div style="color:var(--muted2);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Contact</div>
-          <a href="mailto:jonghun07@gmail.com" style="color:var(--acc2)">jonghun07@gmail.com</a>
+          <a href="mailto:jonghun@kier.re.kr" style="color:var(--acc2)">jonghun@kier.re.kr</a>
           <img src="img/contact/contact_qr.webp" alt="Scan for Building Cognition Lab website" style="display:block;width:60%;margin:16px auto 0;border-radius:12px">
         </div>
       </div>
       <div class="prof-bio">
-        <p>Dr. Jonghun Kim is the founding director of the Building Cognition Lab and Professor in the Department of Architectural Engineering at Dong-A University. He previously served as Professor at the University of Science &amp; Technology (UST, 2021&ndash;2026) and as Principal Researcher and Head of the Building Energy Group at the Korea Institute of Energy Research (KIER, 2012&ndash;2026).</p>
+        <p>Dr. Jonghun Kim is the founding director of the Building Cognition Lab and Professor in the Department of Architectural Engineering at Dong-A University (2026&ndash;present). He previously served as Professor at the University of Science &amp; Technology (UST, 2021&ndash;2026) and as Principal Researcher and Head of the Building Energy Group at the Korea Institute of Energy Research (KIER, 2012&ndash;2026).</p>
         <p>As a <strong style="color:var(--acc3)">Japanese Government (MEXT) Scholarship student</strong>, he studied at the University of Tokyo, where he earned his Ph.D. in Architectural Environment Engineering (energy &amp; indoor air quality) in 2011.</p>
         <p>His research bridges building physics, indoor environmental quality, and artificial intelligence &mdash; advancing digital twins, building knowledge graphs, and physics-informed AI toward fully autonomous buildings. He holds international credentials including Certified Passive House Designer and Certified Measurement &amp; Verification Professional.</p>
         <p>In recognition of his contributions to the nation's building energy and carbon-neutrality agenda, he has been honored with <strong style="color:var(--acc3)">four Ministerial Commendations</strong> from the Korean government &mdash; awarded by the Ministers of Land, Infrastructure and Transport, Science and ICT, and Trade, Industry and Energy &mdash; among numerous other national and academic awards.</p>
@@ -795,9 +858,10 @@
         <a href="#foundation">Foundations</a>
         <a href="#platform">Platform</a>
         <a href="#publications">Publications</a>
+        <a href="#activities">Activities</a>
       </div>
     </div>
-    <div class="muted" style="margin-top:28px">&copy; 2026 Building Cognition Lab &mdash; Jonghun KIM. All rights reserved.</div>
+    <div class="muted" style="margin-top:28px">&copy; 2012 Building Cognition Lab &mdash; Jonghun KIM. All rights reserved.</div>
   </div>
 </footer>
 
@@ -963,6 +1027,74 @@
   placed.forEach(function(rc){ if(rc.x<mnx)mnx=rc.x; if(rc.y<mny)mny=rc.y; if(rc.x+rc.w>mxx)mxx=rc.x+rc.w; if(rc.y+rc.h>mxy)mxy=rc.y+rc.h; });
   var pad=22;
   svg.setAttribute('viewBox',(mnx-pad).toFixed(0)+' '+(mny-pad).toFixed(0)+' '+(mxx-mnx+2*pad).toFixed(0)+' '+(mxy-mny+2*pad).toFixed(0));
+})();
+</script>
+
+<script>window.ACT_PHOTOS=["202507_Gwangju Metropolitan Special Lecture.jpg", "202508_Ukraine Special Lecture.jpg", "202512_California ISO Visit.jpg", "202607_PNU Special Lecture.jpg"];</script>
+<script>
+(function(){
+  var grid=document.getElementById('act-grid'); if(!grid) return;
+  var section=document.getElementById('activities');
+  var EXT=/\.(jpe?g|png|webp|gif)$/i;
+  function parse(name){
+    var b=name.replace(EXT,'');
+    var m=b.match(/^(\d{4})(\d{2})(\d{2})[_\-\s]+(.+)$/);
+    if(m){ return {date:m[1]+m[2]+m[3], pretty:m[1]+'.'+m[2]+'.'+m[3], title:m[4].replace(/[_]+/g,' ').trim()}; }
+    m=b.match(/^(\d{4})(\d{2})[_\-\s]+(.+)$/);
+    if(m){ return {date:m[1]+m[2]+'00', pretty:m[1]+'.'+m[2], title:m[3].replace(/[_]+/g,' ').trim()}; }
+    return {date:'00000000', pretty:'', title:b.replace(/[_]+/g,' ').trim()};
+  }
+  function render(items){
+    if(!items||!items.length){ if(section) section.style.display='none'; return; }
+    items.forEach(function(it){ var p=parse(it.name); it.date=p.date; it.pretty=p.pretty; it.title=p.title; });
+    items.sort(function(a,b){ return b.date.localeCompare(a.date); });
+    grid.innerHTML='';
+    items.forEach(function(it){
+      var fig=document.createElement('figure'); fig.className='act-item';
+      var img=document.createElement('img'); img.src=it.url; img.alt=it.title; img.loading='lazy';
+      var cap=document.createElement('figcaption'); cap.textContent=it.title;
+      if(it.pretty){ var d=document.createElement('span'); d.className='act-date'; d.textContent=it.pretty; cap.appendChild(d); }
+      fig.appendChild(img); fig.appendChild(cap); grid.appendChild(fig);
+    });
+  }
+  function fromApi(){
+    var owner=(location.hostname.split('.')[0])||'jonghun07';
+    var seg=(location.pathname.split('/').filter(Boolean)[0])||'';
+    var cands=[];
+    if(seg){ cands.push([seg,'img/photo']); cands.push([location.hostname, seg+'/img/photo']); }
+    cands.push([location.hostname,'img/photo']);
+    cands.push(['bcl','img/photo']);
+    var i=0;
+    (function next(){
+      if(i>=cands.length){ manifest(); return; }
+      var c=cands[i++];
+      fetch('https://api.github.com/repos/'+owner+'/'+c[0]+'/contents/'+c[1])
+        .then(function(r){ return r.ok?r.json():null; })
+        .then(function(arr){
+          if(Array.isArray(arr)){
+            var items=arr.filter(function(f){return f.type==='file'&&EXT.test(f.name);})
+                         .map(function(f){return {name:f.name,url:f.download_url};});
+            if(items.length){ render(items); return; }
+          }
+          next();
+        })
+        .catch(next);
+    })();
+  }
+  function fromList(list){ render(list.map(function(n){return {name:n,url:'img/photo/'+encodeURIComponent(n)};})); }
+  function manifest(){
+    if(window.ACT_PHOTOS && window.ACT_PHOTOS.length){ fromList(window.ACT_PHOTOS); return; }
+    fetch('img/photo/photos.json').then(function(r){return r.ok?r.json():null;})
+      .then(function(list){
+        if(Array.isArray(list)&&list.length){ fromList(list); }
+        else if(window.ACT_PHOTOS && window.ACT_PHOTOS.length){ fromList(window.ACT_PHOTOS); }
+        else if(section){ section.style.display='none'; }
+      }).catch(function(){
+        if(window.ACT_PHOTOS && window.ACT_PHOTOS.length){ fromList(window.ACT_PHOTOS); }
+        else if(section){ section.style.display='none'; }
+      });
+  }
+  fromApi();
 })();
 </script>
 
