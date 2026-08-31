@@ -84,8 +84,8 @@
   /* LOGO NOTE */
   .logo-note{display:flex;align-items:flex-start;gap:30px;margin-top:42px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:26px 30px}
   .logo-mark{flex:0 0 auto;margin-top:34px;text-align:center}
-  .logo-cap{width:88px;margin:4px auto 0;font-size:49px;font-weight:500;letter-spacing:0;line-height:1;color:#fff;text-align:left;text-indent:-2px}
-  .logo-sub{width:88px;margin:0 auto 0;font-size:9.8px;font-weight:500;letter-spacing:.01em;color:var(--muted);white-space:nowrap;text-align:center}
+  .logo-cap{width:fit-content;margin:4px auto 0;font-size:49px;font-weight:500;letter-spacing:0;line-height:1;color:#fff;text-align:left;text-indent:-2px}
+  .logo-sub{margin:0 auto;font-size:9.8px;font-weight:500;letter-spacing:.01em;color:var(--muted);white-space:normal;text-align:justify;text-align-last:justify}
   .logo-mark svg{width:88px;height:88px;display:block;border-radius:0;box-shadow:0 8px 26px rgba(20,40,160,.4)}
   .logo-txt p{color:var(--muted);font-size:15px;margin-bottom:10px}
   .logo-txt p:last-child{margin-bottom:0}
@@ -369,8 +369,8 @@
             <path d="M9.3 10.4 6.4 7.3M14.7 10.4l2.9-3.1M9.3 13.6l-2.9 3.1M14.7 13.6l2.9 3.1"/>
           </g>
         </svg>
-        <div class="logo-cap">BCL</div>
-        <div class="logo-sub">Dong-A University</div>
+        <div class="logo-cap" id="bcl-cap">BCL</div>
+        <div class="logo-sub" id="bcl-sub">Building Cognition Lab</div>
       </div>
       <div class="logo-txt">
         <div class="ktag" style="margin-bottom:8px">THE MARK</div>
@@ -734,19 +734,13 @@
         <div class="org">
           <div style="height:1px;background:linear-gradient(90deg,transparent,var(--line2) 8%,var(--line2) 92%,transparent);margin:2px auto 16px;width:100%"></div>
           <strong style="color:var(--txt);font-weight:700">Professor</strong><br>
-          Department of Architectural Engineering<br>
-          Dong-A University<br>
-          DAU &middot; 2026&ndash;present<br>
-          <div style="height:1px;background:linear-gradient(90deg,transparent,var(--line2) 8%,var(--line2) 92%,transparent);margin:18px auto 16px;width:100%"></div>
-          <div style="color:var(--muted2);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Formerly</div>
-          <strong style="color:var(--txt);font-weight:700">Professor</strong><br>
           Department of Energy Engineering<br>
           University of Science &amp; Technology<br>
-          UST &middot; 2021&ndash;2026<br><br>
+          UST &middot; 2021&ndash;present<br><br>
           <strong style="color:var(--txt);font-weight:700">Principal Researcher</strong><br>
           Energy ICT Research Department<br>
           Korea Institute of Energy Research<br>
-          KIER &middot; 2012&ndash;2026<br>
+          KIER &middot; 2012&ndash;present<br>
           <div style="height:1px;background:linear-gradient(90deg,transparent,var(--line2) 8%,var(--line2) 92%,transparent);margin:18px auto 16px;width:100%"></div>
           <div style="color:var(--muted2);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Education</div>
           <strong style="color:var(--txt);font-weight:700">Ph.D., Architectural Engineering</strong><br>
@@ -794,7 +788,7 @@
         </div>
       </div>
       <div class="prof-bio">
-        <p>Dr. Jonghun Kim is the founding director of the Building Cognition Lab and Professor in the Department of Architectural Engineering at Dong-A University (2026&ndash;present). He previously served as Professor at the University of Science &amp; Technology (UST, 2021&ndash;2026) and as Principal Researcher and Head of the Building Energy Group at the Korea Institute of Energy Research (KIER, 2012&ndash;2026).</p>
+        <p>Dr. Jonghun Kim is the founding director of the Building Cognition Lab, Professor at the University of Science &amp; Technology (UST, 2021&ndash;present), and Principal Researcher and Head of the Building Energy Group at the Korea Institute of Energy Research (KIER, 2012&ndash;present).</p>
         <p>As a <strong style="color:var(--acc3)">Japanese Government (MEXT) Scholarship student</strong>, he studied at the University of Tokyo, where he earned his Ph.D. in Architectural Environment Engineering (energy &amp; indoor air quality) in 2011.</p>
         <p>His research bridges building physics, indoor environmental quality, and artificial intelligence &mdash; advancing digital twins, building knowledge graphs, and physics-informed AI toward fully autonomous buildings. He holds international credentials including Certified Passive House Designer and Certified Measurement &amp; Verification Professional.</p>
         <p>In recognition of his contributions to the nation's building energy and carbon-neutrality agenda, he has been honored with <strong style="color:var(--acc3)">four Ministerial Commendations</strong> from the Korean government &mdash; awarded by the Ministers of Land, Infrastructure and Transport, Science and ICT, and Trade, Industry and Energy &mdash; among numerous other national and academic awards.</p>
@@ -876,7 +870,7 @@
           <span class="logo"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgf" x1="0" y1="0" x2="1.5" y2="1.5" spreadMethod="repeat" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#6366f1"/><stop offset="0.5" stop-color="#22d3ee"/><stop offset="1" stop-color="#6366f1"/><animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="1.5 1.5" dur="4s" repeatCount="indefinite"/></linearGradient></defs><rect width="24" height="24" fill="url(#lgf)"/><g transform="translate(1.2,1.2) scale(0.9)" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M9.3 10.4 6.4 7.3M14.7 10.4l2.9-3.1M9.3 13.6l-2.9 3.1M14.7 13.6l2.9 3.1"/></g></svg></span>
           Building Cognition Lab
         </div>
-        <div class="muted">Empowering Buildings to Perceive, Reason, and Act &middot; Dong-A University, BUSAN, Republic of Korea</div>
+        <div class="muted">Empowering Buildings to Perceive, Reason, and Act &middot; KIER &middot; UST, DAEJEON, Republic of Korea</div>
       </div>
       <div style="display:flex;gap:26px">
         <a href="#overview">Overview</a>
@@ -1162,6 +1156,24 @@
       });
   }
   fromApi();
+})();
+</script>
+<script>
+(function(){
+  var cap=document.getElementById('bcl-cap'), sub=document.getElementById('bcl-sub');
+  if(!cap||!sub) return;
+  function fit(){
+    var w=cap.getBoundingClientRect().width;
+    if(!w) return;
+    sub.style.width=w+'px';
+    // shrink font until the text fits on a single line within the BCL width
+    var fs=12; sub.style.fontSize=fs+'px'; sub.style.textAlignLast='left'; sub.style.whiteSpace='nowrap';
+    while(sub.scrollWidth>w+0.5 && fs>4){ fs-=0.2; sub.style.fontSize=fs+'px'; }
+    // then justify so it spans the full BCL width edge-to-edge
+    sub.style.whiteSpace='normal'; sub.style.textAlignLast='justify';
+  }
+  if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(fit); }
+  fit(); window.addEventListener('resize',fit);
 })();
 </script>
 
