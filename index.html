@@ -163,6 +163,8 @@
   .b2e h3{font-size:22px;font-weight:650;margin-bottom:6px}
   .b2e .sub{color:var(--muted);font-size:15px;margin-bottom:26px}
   .pipe{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+  .pipe-svg{width:100%;overflow-x:auto}
+  .pipe-svg svg{width:100%;min-width:760px;height:auto;display:block}
   .step{background:var(--bg2);border:1px solid var(--line2);border-radius:10px;padding:11px 16px;font-size:14px;font-weight:600}
   .step.io{background:rgba(20,40,160,.14);border-color:rgba(20,40,160,.35);color:var(--acc3)}
   .pa{color:#8aa0ff;font-size:18px;font-weight:700}
@@ -285,12 +287,12 @@
 <a id="top"></a>
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow">Building Cognition · BIM2Everything · Autonomous Buildings</span>
+    <span class="eyebrow">Building Cognition · Autonomous Buildings</span>
     <h1>Empowering Buildings to<span class="l2">Perceive, Reason, and Act</span></h1>
     <p class="lead">Building Cognition Lab (BCL) develops the scientific foundation for next-generation intelligent buildings &mdash; integrating BIM, digital twins, lightweight AI models for edge devices, building energy and environmental knowledge graphs, and physics-based simulation so buildings can understand themselves and operate autonomously.</p>
     <div class="cta">
       <a class="btn btn-primary" href="#research">Explore Building Cognition &rarr;</a>
-      <a class="btn btn-ghost" href="#platform">View BIM2Everything Platform</a>
+      <a class="btn btn-ghost" href="#platform">View the Platform</a>
     </div>
   </div>
 </section>
@@ -427,7 +429,7 @@
         <div class="ktag">RESEARCH TOPICS</div>
         <div class="tags">
           <span class="tag acc">BIM</span><span class="tag">IFC Interoperability</span><span class="tag">Digital Twins</span>
-          <span class="tag">Building metadata</span><span class="tag">Geometry processing</span><span class="tag">BIM2Everything (B2E)</span>
+          <span class="tag">Building metadata</span><span class="tag">Geometry processing</span>
         </div>
         <div class="kw">KEYWORDS <b>BIM · IFC · Digital Twin · Interoperability</b></div>
       </div>
@@ -593,16 +595,53 @@
     <div class="b2e">
       <h3>Integrated Building Cognition Pipeline</h3>
       <div class="sub">A unified workflow connects BIM, Digital Twins, physics-based simulation, semantic knowledge, and AI reasoning.</div>
-      <div class="pipe">
-        <span class="step io">IFC</span><span class="pa">&rarr;</span>
-        <span class="step">Data Processing</span><span class="pa">&rarr;</span>
-        <span class="step">Digital Twin</span><span class="pa">&rarr;</span>
-        <span class="step">Simulation</span><span class="pa">&rarr;</span>
-        <span class="step">Knowledge Graph</span><span class="pa">&rarr;</span>
-        <span class="step">AI Agent</span><span class="pa">&rarr;</span>
-        <span class="step io">Report</span>
+      <div class="pipe-svg">
+      <svg viewBox="0 0 1320 172" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Integrated Building Cognition Pipeline with Perceive–Reason–Act feedback loop">
+        <defs>
+          <marker id="fh" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#8093D5"/></marker>
+          <marker id="fp" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#4FBFB8"/></marker>
+        </defs>
+        <!-- feedback loop: AI Agent -> Digital Twin (Act) -->
+        <path d="M1020,74 L1020,120 Q1020,128 1012,128 L485,128 Q477,128 477,120 L477,80" fill="none" stroke="#4FBFB8" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#fp)"/>
+        <text x="748" y="150" text-anchor="middle" font-size="12.5" font-weight="600" fill="#4FBFB8" font-family="'SamsungOne','Pretendard',sans-serif">Act &#183; Autonomous Control &amp; Re-simulation</text>
+        <!-- forward arrows -->
+        <g stroke="#8093D5" stroke-width="1.6">
+          <line x1="193" y1="47" x2="216" y2="47" marker-end="url(#fh)"/>
+          <line x1="374" y1="47" x2="397" y2="47" marker-end="url(#fh)"/>
+          <line x1="555" y1="47" x2="578" y2="47" marker-end="url(#fh)"/>
+          <line x1="736" y1="47" x2="759" y2="47" marker-end="url(#fh)"/>
+          <line x1="917" y1="47" x2="940" y2="47" marker-end="url(#fh)"/>
+          <line x1="1098" y1="47" x2="1121" y2="47" marker-end="url(#fh)"/>
+        </g>
+        <g font-family="'SamsungOne','Pretendard',sans-serif">
+          <!-- 1 IFC (input) -->
+          <rect x="40" y="20" width="150" height="54" rx="10" fill="rgba(20,40,160,.16)" stroke="rgba(20,40,160,.55)"/>
+          <text x="115" y="43" text-anchor="middle" font-size="15" font-weight="700" fill="#8093D5">IFC / BIM</text>
+          <text x="115" y="60" text-anchor="middle" font-size="10" fill="#8a8d99">+ Sensors &#183; Weather</text>
+          <!-- 2 Data Processing -->
+          <rect x="221" y="20" width="150" height="54" rx="10" fill="#0a0a0f" stroke="rgba(255,255,255,.14)"/>
+          <text x="296" y="51" text-anchor="middle" font-size="15" font-weight="600" fill="#fff">Data Processing</text>
+          <!-- 3 Digital Twin -->
+          <rect x="402" y="20" width="150" height="54" rx="10" fill="#0a0a0f" stroke="rgba(255,255,255,.14)"/>
+          <text x="477" y="51" text-anchor="middle" font-size="15" font-weight="600" fill="#fff">Digital Twin</text>
+          <!-- 4 Simulation -->
+          <rect x="583" y="20" width="150" height="54" rx="10" fill="#0a0a0f" stroke="rgba(255,255,255,.14)"/>
+          <text x="658" y="43" text-anchor="middle" font-size="15" font-weight="600" fill="#fff">Simulation</text>
+          <text x="658" y="60" text-anchor="middle" font-size="10" fill="#8a8d99">Energy &#183; Env &#183; Safety</text>
+          <!-- 5 Knowledge Graph -->
+          <rect x="764" y="20" width="150" height="54" rx="10" fill="#0a0a0f" stroke="rgba(255,255,255,.14)"/>
+          <text x="839" y="51" text-anchor="middle" font-size="15" font-weight="600" fill="#fff">Knowledge Graph</text>
+          <!-- 6 AI Agent -->
+          <rect x="945" y="20" width="150" height="54" rx="10" fill="#0a0a0f" stroke="rgba(255,255,255,.14)"/>
+          <text x="1020" y="43" text-anchor="middle" font-size="15" font-weight="600" fill="#fff">AI Agent</text>
+          <text x="1020" y="60" text-anchor="middle" font-size="10" fill="#8a8d99">Perceive &#183; Reason &#183; Act</text>
+          <!-- 7 Report (output) -->
+          <rect x="1126" y="20" width="150" height="54" rx="10" fill="rgba(20,40,160,.16)" stroke="rgba(20,40,160,.55)"/>
+          <text x="1201" y="51" text-anchor="middle" font-size="15" font-weight="700" fill="#8093D5">Report</text>
+        </g>
+      </svg>
       </div>
-      <div class="kw">※ Simulation: <b>Energy · Environment · Safety</b></div>
+      <div class="kw"><span style="color:#8093D5">&#9654;</span> Data flow &nbsp;·&nbsp; <span style="color:#4FBFB8">&#9654;</span> Perceive&ndash;Reason&ndash;Act feedback loop</div>
       <p class="note">B2E powers Building Cognition.<br>Building Cognition enables Autonomous Buildings.</p>
     </div>
 
@@ -901,7 +940,7 @@
   add('LAB','Building Cognition Lab','core',true); N[idx['LAB']].center=true;
   var K={
     s:['BEMS','BAS','IAQ Monitoring','In-situ Measurement','Occupancy & Human Performance','IoT & Virtual Sensors','U-value','Airtightness','M&V','MRV'],
-    r:['BIM','IFC','Digital Twin','Building Metadata','Geometry Processing','BIM2Everything','Digital Engineering'],
+    r:['BIM','IFC','Digital Twin','Building Metadata','Geometry Processing','Digital Engineering'],
     m:['EnergyPlus','BEM','CFD','ERV','Thermal Comfort','Indoor Env. Quality','Fire & Evacuation','LCA','Carbon Neutrality','Demand Response'],
     c:['Knowledge Graph','Ontology (Brick/REC)','Semantic Reasoning','Context Modeling','Knowledge Representation'],
     i:['AI Agents','Reinforcement Learning','Foundation Models','LLMs for Buildings','Predictive Analytics','Fault Detection & Diagnostics','Occupancy Modeling'],
