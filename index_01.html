@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Autonomous EMS를 위한 뉴로모픽 기술 · 3차년도 연차보고서</title>
+<meta name="description" content="한국에너지기술연구원 기본사업 GP2023-0007 — Autonomous EMS를 위한 뉴로모픽 기술 3차년도(2025) 연차보고서 요약">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227.5%22%20fill%3D%22%2316274F%22%2F%3E%3Cpath%20d%3D%22M3.5%2021.5h5.2L11%209.5l2.4%2012%202.6-16%202.6%2016%202.4-12%202.3%2012h4.2%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+
+/* ===== Paperlogy (참고 웹페이지 제목 서체) ===== */
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap}
+
+:root{
+  --ink:#111; --ink2:#58616A; --line:#e4e7ec; --bg:#ffffff;
+  --primary-blue:#30A0EE; --secondary-blue:#2974E2; --dark-blue:#0e1e52; --dark-navy:#102053;
+  /* 참고 웹페이지 카드 색상 그대로 */
+  --card1:#3D5E94; --card2:#D46523; --card3:#326F18; --card4:#2D2D86; --card5:#6A4410;
+  --card1d:#25395c; --card2d:#8c3f13; --card3d:#1d420d; --card4d:#191950; --card5d:#3f2809;
+  --serif:'Paperlogy','Pretendard Variable',Pretendard,sans-serif;
+  --sans:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --maxw:1480px;
+  --kr:10px;              /* 참고 웹페이지 html font-size */
+}
+@media (max-width:1920px){:root{--kr:9px}}
+@media (max-width:1680px){:root{--kr:8px}}
+@media (max-width:1480px){:root{--kr:7px}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6;letter-spacing:-.015em;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,.pl{font-family:var(--serif)}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* header */
+/* 참고 웹페이지 .header 그대로: rgba(255,255,255,.25) + blur(25px), 테두리 없음 */
+header.top{position:fixed;inset:0 0 auto 0;z-index:60;
+  -webkit-backdrop-filter:blur(25px);backdrop-filter:blur(25px);
+  background:rgba(255,255,255,.25)}
+.top-in{width:100%;max-width:1920px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .mark{flex:none;display:flex;align-items:center}
+.brand .mark svg{height:36px;width:auto;display:block}
+.brand .txt{line-height:1.15}
+.brand .txt b{display:block;font-family:var(--serif);font-size:16px;font-weight:800;letter-spacing:-.03em}
+.brand .txt span{display:block;font-size:11px;color:var(--ink2);font-weight:600}
+.top-cta{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:100px;
+  padding:11px 22px;font-size:13px;font-weight:600;color:#fff;
+  background:linear-gradient(90deg,#5E5A9F 0%,#CA5D35 100%);transition:.2s}
+.top-cta:hover{filter:brightness(1.08)}
+.top-cta i{width:6px;height:6px;border-radius:50%;background:#fff;display:block;animation:blink 1.8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* hero */
+.hero{display:grid;place-items:center;text-align:center;position:relative;padding:34px 0 20px}
+.hero.below{padding:130px 0 70px}
+.hero .eyebrow{display:inline-block;margin-bottom:26px;padding:9px 20px;border-radius:999px;
+  background:#eef4fb;color:var(--secondary-blue);font-size:13px;font-weight:700;letter-spacing:.01em}
+/* 참고 웹페이지 .visual-title strong 규격 그대로
+   6.6rem / 9.9rem / -0.132rem / 700, rem = 10·9·8·7px (1920·1680·1480 브레이크포인트) */
+.hero h1{margin:0;font-family:var(--serif);font-weight:700;text-align:center;
+  font-size:calc(6.6 * var(--kr));line-height:calc(9.9 * var(--kr));letter-spacing:calc(-0.132 * var(--kr))}
+.hero h1 .g1,.hero h1 .g2{display:block}
+.hero h1 .g1{color:#1f91df}
+.hero h1 .g2{color:#0e1e52}
+@media (max-width:1280px){.hero h1{font-size:calc(7 * var(--kr));line-height:calc(9 * var(--kr))}}
+@media (max-width:640px){.hero h1{font-size:calc(4.8 * var(--kr));line-height:calc(7 * var(--kr))}}
+/* 문구는 비우고 원래 차지하던 2줄 높이만 유지 */
+.hero .sub-space{margin-top:26px;font-size:clamp(14px,2.6vw,17px);height:3.2em}
+.hero .stats{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:36px}
+.hero .stats div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 20px;min-width:108px}
+.hero .stats b{display:block;font-family:var(--serif);font-size:24px;font-weight:800;color:var(--dark-navy)}
+.hero .stats span{font-size:11.5px;color:var(--ink2);font-weight:700}
+
+/* section head */
+.sect{padding:100px 0 20px}
+.sect-h{text-align:center;margin-bottom:48px}
+.sect-h h2{margin:0;font-size:clamp(26px,5vw,44px);font-weight:600;letter-spacing:-.04em;color:var(--ink)}
+.sect-h h2 em{font-style:normal;font-weight:400;color:#333}
+.sect-h p{margin:14px 0 0;color:var(--ink2);font-size:14px;font-weight:500}
+
+/* deck — korea.kr 원본 수치 그대로.
+   scale() 로 줄이면 3D 레이어가 비트맵으로 축소돼 글자가 흐려지므로,
+   카드 크기·여백·글자를 모두 --kr(10·9·8·7px) 배수로 지정해 실제 크기로 렌더링한다. */
+.deck-stage{position:relative;width:100%;height:var(--sh,800px);margin-top:6px}
+.deck{position:absolute;top:0;left:50%;width:calc(45 * var(--kr));height:calc(71.9 * var(--kr));
+  margin-left:calc(-22.5 * var(--kr))}
+.card{position:absolute;inset:0;transform:translate(0px,0px) rotate(0deg);
+  transition:transform .6s cubic-bezier(.075,.82,.165,1),z-index 0s}
+.card-flip{position:relative;width:100%;height:100%;transition:.5s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+.card:hover{z-index:6!important}
+.card:hover .card-flip,.card.flip .card-flip{transform:rotateY(180deg)}
+.card-front,.card-back{position:absolute;inset:0;width:100%;height:100%;color:#fff;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  box-shadow:0 10px 10px 0 rgba(0,0,0,.15);border-radius:calc(2.4 * var(--kr));overflow:hidden;z-index:1}
+.card-front>*{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.card-front .card-img{position:absolute;inset:0;height:100%}
+.card-front .card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.card-front .card-value{display:flex;position:absolute;top:calc(3.6 * var(--kr));left:calc(3 * var(--kr));
+  height:calc(4.6 * var(--kr));padding:0 calc(2.4 * var(--kr));
+  background:#fff;font-family:var(--serif);font-weight:700;font-size:calc(1.8 * var(--kr));align-items:center;
+  justify-content:center;border-radius:100px;gap:calc(.5 * var(--kr));z-index:2}
+.card-front .arrow{display:flex;position:absolute;top:calc(3.6 * var(--kr));right:calc(3 * var(--kr));
+  width:calc(4.6 * var(--kr));height:calc(4.6 * var(--kr));
+  background:rgba(17,17,17,.20);font-size:calc(2 * var(--kr));border-radius:50%;align-items:center;justify-content:center;z-index:2}
+.card-front .card-info{display:flex;position:absolute;bottom:0;left:0;width:100%;height:calc(11.3 * var(--kr));
+  padding:0 calc(3 * var(--kr));flex-direction:column;justify-content:center;z-index:1;
+  border-radius:calc(2.4 * var(--kr));gap:calc(.8 * var(--kr));
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.card-front .card-info-title{color:#fff;font-family:var(--serif);font-weight:400;
+  font-size:calc(3.4 * var(--kr));line-height:calc(3.84 * var(--kr));letter-spacing:calc(-0.096 * var(--kr))}
+.card-front .card-info-title span{font-weight:700}
+.card-back{display:flex;padding:calc(3.6 * var(--kr)) calc(3 * var(--kr));border:1px solid rgba(255,255,255,.30);
+  transform:rotateY(180deg);flex-direction:column}
+.card-back .card-value{display:flex;height:calc(4.6 * var(--kr));padding:0 calc(2.4 * var(--kr));background:#fff;
+  font-family:var(--serif);font-weight:700;font-size:calc(1.8 * var(--kr));flex-shrink:0;border-radius:100px;
+  align-self:flex-start;align-items:center;gap:calc(.5 * var(--kr));margin-bottom:calc(3 * var(--kr))}
+.card-back .card-title{color:#fff;font-family:var(--serif);font-weight:500;font-size:calc(3.4 * var(--kr));
+  line-height:calc(4.08 * var(--kr));letter-spacing:calc(-0.102 * var(--kr));margin-bottom:calc(2.4 * var(--kr))}
+.card-back .card-title span{font-weight:700}
+.card-back .card-list{display:flex;flex-direction:column;gap:calc(1 * var(--kr));list-style:none;margin:0;padding:0}
+.card-back .card-list li{border:1px solid rgba(255,255,255,.20);border-radius:calc(.8 * var(--kr));overflow:hidden}
+.card-back .card-list li button{display:flex;width:100%;height:calc(5.3 * var(--kr));padding:0 calc(1.6 * var(--kr));
+  border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.18);color:#fff;font-weight:500;
+  font-size:calc(1.7 * var(--kr));letter-spacing:calc(-0.032 * var(--kr));border-radius:calc(.8 * var(--kr));
+  gap:calc(.8 * var(--kr));align-items:center;text-align:left;transition:.2s}
+.card-back .card-list li button:hover{background:rgba(255,255,255,.32)}
+.card-back .card-list li button span{display:flex;width:calc(6 * var(--kr));height:calc(2.5 * var(--kr));background:#fff;
+  font-family:var(--serif);font-weight:500;font-size:calc(1.35 * var(--kr));letter-spacing:calc(-0.026 * var(--kr));
+  align-items:center;justify-content:center;border-radius:100px;flex:none}
+.card-back .hint{margin-top:auto;padding-top:calc(1.8 * var(--kr));font-size:calc(1.3 * var(--kr));opacity:.8;font-weight:500}
+/* 카드별 색상 — 원본 값 */
+.c1 .card-front .card-value,.c1 .card-back .card-value,.c1 .card-back .card-list li button span{color:var(--card1)}
+.c2 .card-front .card-value,.c2 .card-back .card-value,.c2 .card-back .card-list li button span{color:var(--card2)}
+.c3 .card-front .card-value,.c3 .card-back .card-value,.c3 .card-back .card-list li button span{color:var(--card3)}
+.c4 .card-front .card-value,.c4 .card-back .card-value,.c4 .card-back .card-list li button span{color:var(--card4)}
+.c5 .card-front .card-value,.c5 .card-back .card-value,.c5 .card-back .card-list li button span{color:var(--card5)}
+/* 하단 밴드 — 원본과 동일: 카드색 60% 반투명 + blur(20px) */
+.c1 .card-front .card-info{background:rgba(61,94,148,.60)}
+.c2 .card-front .card-info{background:rgba(212,101,35,.60)}
+.c3 .card-front .card-info{background:rgba(50,111,24,.60)}
+.c4 .card-front .card-info{background:rgba(45,45,134,.60)}
+.c5 .card-front .card-info{background:rgba(106,68,16,.60)}
+.c1 .card-front{background:linear-gradient(160deg,var(--card1) 0%,var(--card1d) 100%)}
+.c2 .card-front{background:linear-gradient(160deg,var(--card2) 0%,var(--card2d) 100%)}
+.c3 .card-front{background:linear-gradient(160deg,var(--card3) 0%,var(--card3d) 100%)}
+.c4 .card-front{background:linear-gradient(160deg,var(--card4) 0%,var(--card4d) 100%)}
+.c5 .card-front{background:linear-gradient(160deg,var(--card5) 0%,var(--card5d) 100%)}
+.c1 .card-back{background:linear-gradient(120deg,var(--card1d) 0%,var(--card1) 100%)}
+.c2 .card-back{background:linear-gradient(120deg,var(--card2d) 0%,var(--card2) 100%)}
+.c3 .card-back{background:linear-gradient(120deg,var(--card3d) 0%,var(--card3) 100%)}
+.c4 .card-back{background:linear-gradient(120deg,var(--card4d) 0%,var(--card4) 100%)}
+.c5 .card-back{background:linear-gradient(120deg,var(--card5d) 0%,var(--card5) 100%)}
+
+/* 참고 웹페이지의 스크롤 마크 (card-slide-scroll) */
+.card-slide-scroll{display:flex;margin-top:-20px;flex-direction:column;justify-content:center;align-items:center;gap:20px}
+.card-slide-scroll svg{animation:scrollTopBottom 1s ease-in-out infinite}
+.card-slide-scroll span{color:#222;font-family:var(--sans);font-weight:600;font-size:16px;line-height:19.2px;
+  letter-spacing:3.2px;text-align:center}
+@keyframes scrollTopBottom{0%{transform:translateY(-8px)}50%{transform:translateY(8px)}100%{transform:translateY(-8px)}}
+
+/* detail */
+.detail{padding:80px 0 90px}
+.detail .wrap{max-width:1180px}
+.acc{border-top:1px solid var(--line)}
+.acc:last-of-type{border-bottom:1px solid var(--line)}
+.acc-h{width:100%;display:flex;align-items:center;gap:15px;padding:24px 4px;text-align:left}
+.acc-h .no{flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#fff;
+  font-family:var(--serif);font-size:14px;font-weight:800}
+.acc.c1 .acc-h .no{background:var(--card1)} .acc.c2 .acc-h .no{background:var(--card2)}
+.acc.c3 .acc-h .no{background:var(--card3)} .acc.c4 .acc-h .no{background:var(--card4)}
+.acc.c5 .acc-h .no{background:var(--card5)}
+.acc-h .tt{flex:1;min-width:0}
+.acc-h .tt b{display:block;font-family:var(--serif);font-size:clamp(18px,3.4vw,24px);font-weight:600;letter-spacing:-.04em;line-height:1.2}
+.acc-h .tt span{display:block;margin-top:1px;font-size:11.5px;line-height:1.35;color:var(--ink2);font-weight:700;letter-spacing:.08em}
+.acc-h .cnt{flex:none;background:#F3F4F5;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;color:#58616A}
+.acc-h .chev{flex:none;width:26px;height:26px;display:grid;place-items:center;color:#98a2b3;transition:transform .3s}
+.acc.open .acc-h .chev{transform:rotate(180deg)}
+.acc-b{display:none;padding:0 4px 32px}
+.acc.open .acc-b{display:block}
+.acc .lead{margin:0 0 20px;padding:17px 19px;border-radius:14px;background:#F7F8FA;border:1px solid var(--line);
+  color:#333;font-size:14px;font-weight:500;line-height:1.68}
+.strat{margin-bottom:12px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.strat-h{width:100%;display:flex;align-items:center;gap:12px;padding:15px 17px;background:#F3F4F5;text-align:left;transition:.2s}
+.strat-h:hover{background:#e9ebee}
+.strat-h .b{flex:none;border-radius:8px;padding:5px 10px;font-family:var(--serif);font-size:11px;font-weight:600;
+  background:#dfe4ea;color:#333}
+.strat-h .t{flex:1;font-family:var(--serif);font-size:15px;font-weight:700;letter-spacing:-.035em}
+.strat-h .a{flex:none;font-size:15px;opacity:.55;transition:transform .3s}
+.strat.open .strat-h .a{transform:rotate(90deg);opacity:1}
+.acc.c1 .strat.open .strat-h{background:var(--card1);color:#fff} .acc.c2 .strat.open .strat-h{background:var(--card2);color:#fff}
+.acc.c3 .strat.open .strat-h{background:var(--card3);color:#fff} .acc.c4 .strat.open .strat-h{background:var(--card4);color:#fff}
+.acc.c5 .strat.open .strat-h{background:var(--card5);color:#fff}
+.strat.open .strat-h .b{background:rgba(255,255,255,.24);color:#fff}
+.strat-b{display:none;padding:6px 17px 16px;background:#fff}
+.strat.open .strat-b{display:block}
+.strat-b ol{list-style:none;margin:0;padding:0;counter-reset:t}
+.strat-b li{counter-increment:t;display:flex;gap:12px;padding:13px 4px;border-bottom:1px dashed #e9edf3;
+  font-size:14.5px;font-weight:500;letter-spacing:-.03em;line-height:1.5}
+.strat-b li:last-child{border-bottom:0}
+.strat-b li::before{content:counter(t) ".";flex:none;width:20px;color:#98a2b3;font-weight:700;font-size:13.5px;text-align:right}
+.strat-b li .tag{display:inline-block;margin-left:8px;background:#F3F4F5;color:#58616A;border-radius:6px;
+  padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap;vertical-align:1px}
+
+.closing{padding:74px 0 0}
+.closing .box{border-radius:24px;padding:clamp(32px,6vw,62px);text-align:center;color:#fff;
+  background:linear-gradient(115deg,var(--card1) 0%,var(--card4) 48%,var(--card3) 100%)}
+.closing h3{margin:0;font-size:clamp(21px,4.4vw,34px);font-weight:800;letter-spacing:-.04em;line-height:1.35}
+.closing p{margin:16px auto 0;max-width:640px;font-size:14.5px;opacity:.92;font-weight:500}
+.closing .tag{display:inline-block;margin-bottom:20px;padding:8px 17px;border-radius:999px;
+  background:rgba(255,255,255,.2);font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:.12em}
+footer{margin-top:74px;border-top:1px solid var(--line);padding:32px 0 50px;color:#98a2b3;font-size:12px}
+footer .f{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;justify-content:space-between}
+footer b{color:#58616A;font-weight:700}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+
+/* 아랫줄 자간을 조절해 윗줄 폭에 맞춤 */
+.brand .txt b,.brand .txt span{width:max-content;max-width:100%}
+
+/* ===== '뉴로모픽 기술이란' 블록 ===== */
+.prose{max-width:920px;margin:0 auto}
+.prose p{margin:0 0 16px;font-size:15.5px;line-height:1.85;color:#333;font-weight:500;letter-spacing:-.02em}
+.prose p:last-child{margin-bottom:0}
+.prose strong{font-weight:700;color:var(--ink)}
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px;margin:30px 0 4px}
+.duo article{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;
+  padding:26px 26px 22px;background:#fff}
+.duo article.a{border-top:4px solid var(--card1)}
+.duo article.b{border-top:4px solid var(--card5)}
+.duo h4{margin:0 0 3px;font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.03em}
+.duo .sub{margin:0 0 15px;font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#98a2b3}
+.duo ul{margin:0 0 18px;padding-left:17px;font-size:14.5px;line-height:1.8;color:#333;font-weight:500;letter-spacing:-.02em}
+.duo ul li+li{margin-top:5px}
+.duo .fig{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.duo .fig div{flex:1 1 96px;border-radius:12px;background:#F7F8FA;padding:12px 14px}
+.duo .fig b{display:block;font-family:var(--serif);font-size:19px;font-weight:700;color:var(--dark-blue);letter-spacing:-.03em}
+.duo .fig span{display:block;margin-top:2px;font-size:11px;color:var(--ink2);font-weight:700}
+.flow{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 4px;justify-content:center}
+.flow span{border:1px solid var(--line);border-radius:100px;padding:9px 17px;font-size:13.5px;
+  font-weight:700;color:#333;background:#fff;letter-spacing:-.02em}
+.flow i{align-self:center;font-style:normal;color:#c3c9d2;font-size:13px}
+.callout{margin:30px 0 0;border-left:3px solid var(--card2);background:#FCF8F4;
+  border-radius:0 14px 14px 0;padding:18px 22px}
+.callout b{display:block;font-family:var(--serif);font-size:15px;font-weight:700;margin-bottom:7px;letter-spacing:-.03em}
+.callout p{margin:0;font-size:14.5px;line-height:1.8;color:#333;font-weight:500;letter-spacing:-.02em}
+
+/* ===== 보고서 전용 ===== */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;margin:16px 0 8px;background:#fff}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+.tbl th{background:#F3F4F5;color:#333;font-weight:700;padding:11px 14px;border-bottom:1px solid var(--line);
+  text-align:left;white-space:nowrap;letter-spacing:-.02em}
+.tbl td{padding:11px 14px;border-bottom:1px solid #eef0f3;color:#333;letter-spacing:-.02em}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl .nocol{width:58px}   /* 두 표의 본문 시작 라인을 맞추기 위한 고정 폭 */
+.tbl .tot td{font-weight:700;background:#F7F8FA}
+.tbl .ok{color:#1d7a3e;font-weight:700}
+.note{margin:8px 2px 0;color:#98a2b3;font-size:12.5px;font-weight:500}
+.block{margin-top:64px}
+.block>h3{margin:0 0 6px;font-family:var(--serif);font-size:clamp(20px,3.4vw,28px);font-weight:600;letter-spacing:-.04em}
+.block>h3 em{font-style:normal;font-weight:400;color:#333}
+.block>p.lede{margin:0 0 6px;color:var(--ink2);font-size:14px;font-weight:500}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:18px 0 4px}
+.kpi div{border:1px solid var(--line);border-radius:16px;padding:18px 20px;background:#fff}
+.kpi b{display:block;font-family:var(--serif);font-size:30px;font-weight:700;letter-spacing:-.04em;color:var(--dark-blue)}
+.kpi span{display:block;margin-top:4px;font-size:12.5px;color:var(--ink2);font-weight:700}
+.kpi em{display:block;margin-top:6px;font-style:normal;font-size:11.5px;color:#98a2b3;font-weight:600}
+.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:18px}
+.plan div{border:1px solid var(--line);border-radius:16px;padding:20px;background:#F7F8FA}
+.plan b{display:block;font-family:var(--serif);font-size:16px;font-weight:700;margin-bottom:10px;letter-spacing:-.03em}
+.plan ul{margin:0;padding-left:16px;color:#333;font-size:13.5px;line-height:1.7;font-weight:500}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0;border:1px solid var(--line);
+  border-radius:16px;overflow:hidden;margin-top:22px}
+.meta div{padding:16px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.meta span{display:block;font-size:11.5px;color:#98a2b3;font-weight:700;letter-spacing:.04em}
+.meta b{display:block;margin-top:5px;font-size:14.5px;font-weight:700;color:#333;letter-spacing:-.03em}
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <div class="mark"><svg class="kier" viewBox="0 0 1120 746" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="한국에너지기술연구원 KIER"><g transform="translate(0,746) scale(0.1,-0.1)" fill="#16274F"><path d="M11072 7348 c-9 -17 -31 -47 -48 -67 -17 -20 -38 -50 -47 -67 -9 -18
+-51 -64 -93 -102 -112 -103 -243 -166 -402 -191 -130 -22 -454 -24 -4922 -37
+-2359 -7 -2171 1 -2348 -96 -77 -42 -117 -73 -197 -153 -55 -55 -107 -113
+-115 -130 -8 -16 -26 -48 -41 -70 -37 -56 -97 -274 -124 -454 -8 -53 -24 -128
+-35 -168 -11 -40 -27 -116 -35 -170 -9 -54 -29 -154 -45 -223 -16 -69 -36
+-163 -45 -210 -9 -47 -28 -123 -42 -168 -19 -64 -23 -91 -17 -115 13 -45 30
+-44 55 5 12 24 33 57 47 73 14 17 36 53 48 82 34 75 105 164 194 241 113 97
+204 145 335 178 l110 27 1550 8 c853 4 2412 7 3465 8 1858 1 2006 3 2112 31
+61 17 168 79 228 133 116 106 214 310 245 514 9 60 25 137 35 173 11 36 26
+112 35 170 9 58 29 161 45 230 16 69 36 174 45 234 9 60 27 138 41 174 33 88
+32 172 -3 172 -7 0 -22 -14 -31 -32z"/><path d="M363 4489 c-25 -25 -14 -59 32 -107 25 -25 45 -53 45 -61 0 -24 -27
+-144 -60 -261 -16 -58 -36 -145 -45 -193 -9 -48 -25 -114 -36 -145 -11 -31
+-27 -93 -35 -137 -8 -44 -29 -129 -46 -190 -26 -96 -36 -116 -73 -155 -56 -59
+-69 -84 -55 -109 9 -18 20 -19 182 -14 113 4 187 2 213 -5 32 -10 44 -9 63 4
+27 18 23 44 -13 84 -12 14 -31 40 -40 59 -17 33 -17 38 0 110 53 223 85 335
+97 342 34 22 58 -4 77 -85 7 -27 22 -69 35 -95 13 -25 31 -69 40 -97 9 -28 28
+-66 41 -84 34 -46 33 -91 -4 -132 -44 -51 -52 -72 -38 -93 7 -9 24 -16 38 -15
+13 1 109 3 212 4 127 2 192 7 200 15 15 15 -13 68 -71 133 -31 34 -48 64 -59
+104 -8 31 -27 80 -43 108 -15 28 -31 64 -34 80 -4 16 -25 65 -47 110 -21 44
+-39 87 -39 95 0 8 -13 38 -30 68 -51 89 -55 82 184 326 117 119 221 217 230
+217 26 0 76 55 76 83 0 44 -22 52 -99 37 -56 -10 -81 -10 -136 0 -66 12 -69
+12 -86 -9 -20 -24 -17 -38 18 -90 13 -19 23 -39 23 -46 0 -18 -41 -66 -171
+-200 -64 -66 -138 -146 -165 -178 -54 -64 -79 -77 -102 -54 -14 14 -13 25 11
+109 14 51 38 140 53 198 30 111 47 138 112 172 34 18 51 61 35 87 -9 13 -23
+15 -74 11 -98 -8 -309 -5 -359 4 -32 5 -48 4 -57 -5z"/><path d="M1563 4489 c-23 -24 -13 -52 37 -105 51 -54 58 -71 39 -105 -5 -11
+-17 -59 -25 -107 -8 -48 -26 -118 -39 -157 -13 -38 -31 -109 -40 -156 -8 -47
+-24 -111 -34 -142 -11 -31 -29 -104 -41 -164 -36 -182 -65 -264 -106 -304 -35
+-33 -64 -78 -64 -98 0 -5 6 -16 14 -24 12 -12 44 -13 174 -9 107 3 175 1 210
+-7 92 -23 121 20 56 84 -19 20 -41 50 -49 68 -15 37 -6 88 46 272 16 55 37
+145 49 201 11 55 26 119 34 141 8 22 21 78 31 124 9 46 27 122 40 169 14 47
+29 104 35 127 8 31 21 50 48 70 50 38 61 53 62 86 0 37 -26 46 -109 34 -62 -8
+-226 -4 -316 9 -26 3 -44 1 -52 -7z"/><path d="M2283 4489 c-23 -24 -14 -50 39 -105 l52 -55 -13 -47 c-7 -26 -19
+-80 -26 -119 -7 -40 -23 -101 -34 -135 -11 -35 -30 -108 -41 -163 -11 -55 -29
+-127 -40 -160 -11 -33 -28 -103 -39 -155 -36 -181 -67 -264 -120 -322 -53 -59
+-62 -76 -51 -98 7 -13 68 -15 480 -14 l471 0 35 36 c30 29 39 50 55 119 11 46
+32 110 46 142 20 44 24 63 16 76 -27 43 -90 8 -149 -84 -17 -28 -57 -70 -87
+-93 -46 -36 -73 -47 -168 -71 -152 -38 -205 -45 -238 -31 -29 12 -61 57 -61
+87 0 27 27 146 54 238 13 44 30 111 37 149 17 98 41 120 119 113 31 -3 69 -12
+83 -22 38 -25 71 -98 63 -140 -13 -68 37 -100 82 -52 29 30 39 61 47 142 11
+104 34 195 58 229 33 47 23 126 -18 126 -7 0 -40 -33 -75 -72 -90 -104 -91
+-105 -169 -113 -132 -13 -141 2 -102 157 16 62 37 133 45 157 9 24 16 58 16
+76 0 46 39 89 94 105 38 10 59 10 133 -5 48 -9 103 -23 120 -31 44 -18 70 -65
+79 -141 5 -52 11 -67 30 -79 17 -12 27 -13 43 -4 35 18 49 52 61 145 6 50 13
+107 16 127 5 30 2 41 -19 62 l-25 25 -384 -1 c-211 -1 -410 1 -443 6 -44 6
+-63 4 -72 -5z"/><path d="M3503 4494 c-7 -3 -13 -18 -13 -33 0 -21 14 -41 55 -78 30 -28 55
+-57 55 -64 0 -8 -9 -33 -20 -57 -11 -24 -29 -92 -40 -151 -11 -60 -29 -135
+-41 -167 -11 -33 -29 -103 -40 -157 -11 -53 -30 -132 -44 -175 -13 -42 -31
+-117 -39 -167 -9 -49 -19 -100 -21 -112 -3 -12 -32 -53 -65 -90 -48 -54 -60
+-74 -58 -97 l3 -29 238 -1 c289 -1 289 -1 202 94 -37 40 -55 68 -55 86 0 14
+16 73 35 132 19 59 39 139 45 177 18 127 21 135 41 146 16 8 26 7 44 -5 34
+-22 50 -59 64 -146 7 -41 27 -119 46 -175 19 -55 42 -132 50 -171 12 -54 23
+-78 46 -100 29 -28 35 -29 157 -36 172 -11 163 -11 180 6 21 21 10 42 -64 118
+-58 61 -61 67 -77 147 -9 46 -30 120 -46 165 -71 200 -74 215 -58 239 8 12 48
+39 90 61 95 48 163 114 205 196 27 55 32 76 32 134 0 83 -22 135 -82 196 -51
+54 -98 74 -233 100 -100 19 -119 20 -213 9 -92 -11 -210 -9 -327 6 -22 2 -46
+2 -52 -1z m527 -119 c70 -36 80 -54 80 -152 0 -133 -13 -175 -80 -253 -56 -64
+-62 -68 -128 -85 -114 -28 -142 5 -103 124 32 100 61 220 61 255 0 46 30 97
+70 118 44 23 41 23 100 -7z"/><path d="M5148 4461 c-21 -6 -50 -35 -59 -59 -5 -12 -16 -68 -24 -125 -9 -56
+-27 -145 -40 -198 -13 -53 -33 -152 -45 -220 -11 -68 -29 -156 -40 -195 -10
+-38 -30 -136 -44 -216 -14 -81 -32 -163 -41 -184 -8 -20 -15 -56 -15 -80 0
+-81 -175 -74 1841 -74 l1798 0 20 26 c28 35 46 100 77 269 14 77 36 183 49
+235 13 52 31 142 40 200 9 58 25 134 35 170 11 36 28 123 40 194 11 70 25 136
+30 146 24 46 3 108 -38 111 -49 3 -3574 3 -3584 0z"/><path d="M2122 2757 c-25 -29 -71 -190 -87 -300 -9 -61 -32 -177 -50 -257 -19
+-80 -41 -190 -50 -245 -9 -55 -27 -140 -40 -190 -13 -49 -27 -112 -30 -140 -4
+-27 -21 -111 -37 -185 -39 -175 -36 -256 14 -381 41 -102 95 -170 188 -233
+121 -83 63 -79 1145 -87 528 -4 1934 -8 3125 -9 2269 -1 2692 -7 2820 -35 137
+-30 274 -122 349 -233 58 -87 69 -112 91 -217 28 -133 38 -162 57 -169 21 -8
+50 18 63 58 5 17 14 76 20 131 6 55 23 150 39 210 16 61 34 144 41 185 6 41
+24 125 40 185 16 61 33 141 40 180 6 38 27 132 47 210 29 114 36 165 40 276 7
+164 -4 221 -57 309 -74 122 -195 211 -323 235 -61 12 -620 16 -3537 23 l-3465
+9 -82 28 c-70 24 -93 38 -147 89 -79 74 -141 187 -150 268 -22 209 -28 253
+-39 275 -11 21 -15 22 -25 10z"/></g></svg></div>
+      <div class="txt"><b>Autonomous EMS 뉴로모픽</b><span>한국에너지기술연구원 · 3차년도 성과 요약 · 김종훈</span></div>
+    </div>
+    <a class="top-cta" href="#detail"><i></i>수행 내용 보기</a>
+  </div>
+</header>
+
+<section class="sect" id="parts">
+  <div class="wrap">
+    <div class="sect-h">
+      <h2><em>5대</em> 핵심기술</h2>
+    </div>
+    <div class="deck-area">
+      <div class="deck-stage" id="stage"><div class="deck" id="deck"></div></div>
+      <div class="card-slide-scroll" aria-hidden="true">
+        <svg width="20" height="30" viewBox="0 0 20 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="18" height="28" rx="9" stroke="#222" stroke-width="1.6"/>
+          <line x1="10" y1="7" x2="10" y2="12" stroke="#222" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span>SCROLL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero below">
+  <div class="wrap">
+    <h1><span class="g1">Autonomous EMS를 위한</span><span class="g2">뉴로모픽 기술</span></h1>
+    <div class="stats">
+      <div><b>15.6%</b><span>에너지절감률</span></div>
+      <div><b>13.0%</b><span>부하분리 오차율</span></div>
+      <div><b>87.6%</b><span>예측 정확도</span></div>
+      <div><b>1 V</b><span>소자 구동전압</span></div>
+      <div><b>17.1 pJ</b><span>spike당 에너지</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="detail" id="detail">
+  <div class="wrap">
+    <div class="sect-h" style="margin-bottom:36px">
+      <h2>뉴로모픽 <em>기술이란</em></h2>
+      <p>이 과제가 말하는 뉴로모픽 — 무엇을, 왜, 어디에 쓰는가</p>
+    </div>
+
+    <div class="prose">
+      <p>이 과제의 <strong>뉴로모픽</strong>은 뇌의 신경세포와 시냅스가 신호를 다루는 방식을 그대로 흉내 내어,
+      <strong>같은 데이터를 훨씬 적은 전력으로 처리하는 기술</strong>을 뜻합니다. 소프트웨어와 하드웨어, 두 층위로 나뉩니다.</p>
+    </div>
+
+    <div class="duo">
+      <article class="a">
+        <h4>① 소프트웨어 — SNN</h4>
+        <p class="sub">SPIKING NEURAL NETWORK</p>
+        <ul>
+          <li>기존 AI(딥러닝·머신러닝·강화학습)는 ANN 기반이라 모든 뉴런이 매 순간 곱셈·덧셈(MAC)을 수행</li>
+          <li>SNN은 특정 시점에 발생한 <strong>이벤트(스파이크)</strong>만 전달해 덧셈 위주(Accumulate)로 동작</li>
+          <li>시간·공간 정보를 함께 담아 <strong>시계열 예측에 유리</strong></li>
+          <li>비구조화된 신호를 빠르게 처리하고 연산 에너지가 낮음</li>
+        </ul>
+        <div class="fig">
+          <div><b>87.57%</b><span>iSpikeformer 정확도</span></div>
+          <div><b>87.49%</b><span>iTransformer(ANN)</span></div>
+          <div><b>−54%</b><span>1회 추론 에너지</span></div>
+        </div>
+      </article>
+      <article class="b">
+        <h4>② 하드웨어 — 나노와이어 네트워크</h4>
+        <p class="sub">Ag NANOWIRE NETWORK</p>
+        <ul>
+          <li>대부분의 뉴로모픽 칩은 반도체 공정으로 <strong>격자형 어레이</strong>를 제작</li>
+          <li>실제 뇌의 뉴런은 격자가 아니라 <strong>무작위 네트워크</strong> 형태</li>
+          <li>은 나노와이어로 그 무작위 연결망을 물리적으로 구현 — 고성능 추구 노선과 차별화</li>
+          <li>3차년도에 Slow-spin coating 공정을 개발해 균일한 네트워크 확보</li>
+        </ul>
+        <div class="fig">
+          <div><b>5.91%</b><span>균일도</span></div>
+          <div><b>1 V</b><span>구동전압</span></div>
+          <div><b>17.1 pJ</b><span>spike당 에너지</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="prose" style="margin-top:34px">
+      <p><strong>왜 EMS에 뉴로모픽인가.</strong> EMS가 IoT·엣지·클라우드로 고도화될수록 처리할 데이터가 폭증하는데,
+      폰 노이만 구조의 디지털 컴퓨팅으로는 비용과 전력을 감당하기 어렵습니다. 분전반마다 붙는 엣지 디바이스는 특히 전력 예산이 빠듯합니다.
+      그래서 <strong>저전력으로 현장에서 스스로 판단하는 EMS(Autonomous EMS)</strong>를 만들기 위한 수단으로 뉴로모픽을 택했습니다.</p>
+      <p><strong>실체는 뉴로패널.</strong> 이 기술이 최종적으로 앉는 자리는 건물 분전함입니다.
+      뉴로패널은 메인 차단기의 전력량계 하나에서 네 가지를 수행해, 꺼도 되는 스위치를 스스로 골라냅니다.</p>
+    </div>
+
+    <div class="flow">
+      <span>① 부하 분리</span><i>→</i>
+      <span>② 에너지 용도 라벨링</span><i>→</i>
+      <span>③ 중요도 판단</span><i>→</i>
+      <span>④ 상태값 예측</span><i>→</i>
+      <span>끌 스위치 선정</span>
+    </div>
+
+    <div class="callout">
+      <b>다만, SW와 HW는 아직 한 몸이 아닙니다</b>
+      <p>현재 SNN 알고리즘은 상용 뉴로모픽 칩과 일반 소형 PC(NVIDIA Jetson Orin Nano)에서 구동하고 있고,
+      자체 개발 중인 나노와이어 소자는 단품 특성 평가 단계입니다. 두 축이 각각 성숙 중이며,
+      완성된 뉴로모픽 칩이 나오면 개발해 둔 SNN 알고리즘을 그대로 얹는다는 구상입니다.</p>
+    </div>
+
+    <div style="height:64px"></div>
+
+    <div class="sect-h" style="margin-bottom:36px">
+      <h2>핵심기술별 <em>수행 내용</em></h2>
+      <p>연구개발과제번호 GP2023-0007 · 한국에너지기술연구원 기본사업 · 연구책임자 김종훈</p>
+    </div>
+    <div id="accs"></div>
+
+    <div class="block">
+      <h3>3차년도 목표 대비 <em>달성도</em></h3>
+      <p class="lede">정성적 연구개발성과 기준, 7개 목표지표 전부 달성(달성도 100%).</p>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>핵심기술</th><th>목표지표</th><th>단위</th><th class="num">3차년도 목표</th><th class="num">달성값</th><th class="num">달성도</th></tr></thead>
+        <tbody>
+<tr><td>SNN 기반 EMS 운영 알고리즘</td><td>예측에러율</td><td>%</td><td class="num">&lt;2</td><td class="num">달성</td><td class="num ok">100%</td></tr>
+<tr><td>A-EMS 운영 기술</td><td>예측정확도(SNN)</td><td>%</td><td class="num">85</td><td class="num">87.57</td><td class="num ok">100%</td></tr>
+<tr><td>A-EMS 운영 기술</td><td>에너지절감</td><td>%</td><td class="num">15</td><td class="num">15.6</td><td class="num ok">100%</td></tr>
+<tr><td>네트워크 뉴로모픽 소자</td><td>Inter-connection</td><td>EA</td><td class="num">~10⁷</td><td class="num">달성</td><td class="num ok">100%</td></tr>
+<tr><td>네트워크 뉴로모픽 소자</td><td>구동전압</td><td>V</td><td class="num">&lt;3</td><td class="num">1.0</td><td class="num ok">100%</td></tr>
+<tr><td>네트워크 뉴로모픽 소자</td><td>에너지소비</td><td>pJ/spike</td><td class="num">&lt;50</td><td class="num">17.1</td><td class="num ok">100%</td></tr>
+<tr><td>네트워크 뉴로모픽 소자</td><td>균일도</td><td>%</td><td class="num">&lt;10</td><td class="num">5.91</td><td class="num ok">100%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">구동전압 1V, 에너지소비 17.1 pJ/spike는 4차년도 목표치(&lt;2V, &lt;30pJ)를 조기 달성한 값.</p>
+    </div>
+
+    <div class="block">
+      <h3>알고리즘 통합과 <em>에너지절감률</em></h3>
+      <p class="lede">부하분리 + 중요도 판단 알고리즘을 통합해 2개 동 6개 분전반(152채널)에 적용. 2024년 실측 1년치를 계절별 교차분할해 30%(총 3.6개월) 구간으로 평가.</p>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>건물</th><th>분전반</th><th class="num">채널</th><th class="num">제어 전 (kWh)</th><th class="num">제어 후 (kWh)</th><th class="num">절감량 (kWh)</th><th class="num">절감률</th></tr></thead>
+        <tbody>
+<tr><td>복합동</td><td>4층 EPS_1 (LN-04)</td><td class="num">33</td><td class="num">20,875</td><td class="num">16,216</td><td class="num">4,659</td><td class="num ok">22.3%</td></tr>
+<tr><td>복합동</td><td>5층 EPS_1 (LN-05)</td><td class="num">33</td><td class="num">19,137</td><td class="num">15,985</td><td class="num">3,151</td><td class="num ok">16.5%</td></tr>
+<tr><td>복합동</td><td>2층 EPS_1 (LN-02)</td><td class="num">33</td><td class="num">15,228</td><td class="num">13,552</td><td class="num">1,676</td><td class="num ok">11.0%</td></tr>
+<tr><td>행정동</td><td>2층 복도 (LN-2AB)</td><td class="num">19</td><td class="num">12,113</td><td class="num">10,859</td><td class="num">1,255</td><td class="num ok">10.4%</td></tr>
+<tr><td>행정동</td><td>1층 복도 (LN-1AB)</td><td class="num">14</td><td class="num">11,659</td><td class="num">9,871</td><td class="num">1,788</td><td class="num ok">15.3%</td></tr>
+<tr><td>행정동</td><td>3층 복도 (LN-3AB)</td><td class="num">20</td><td class="num">5,220</td><td class="num">4,651</td><td class="num">569</td><td class="num ok">10.9%</td></tr>
+          <tr class="tot"><td>총괄</td><td>6개 분전반</td><td class="num">152</td><td class="num">84,232</td><td class="num">71,134</td><td class="num">13,098</td><td class="num ok">15.6%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">평가 구간 — 봄 ’24.05.04~05.31 · 여름 ’24.08.04~08.31 · 가을 ’24.11.03~11.30 · 겨울 ’25.02.02~02.28</p>
+    </div>
+
+    <div class="block">
+      <h3>에너지 용도별 <em>부하분리 성능</em></h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>에너지 용도</th><th class="num">분전반 수</th><th class="num">채널 수</th><th class="num">nMAE</th><th class="num">MAE</th></tr></thead>
+        <tbody>
+<tr><td>전열</td><td class="num">17</td><td class="num">109</td><td class="num">11.3%</td><td class="num">76.1 W</td></tr>
+<tr><td>조명</td><td class="num">15</td><td class="num">74</td><td class="num">13.2%</td><td class="num">81.3 W</td></tr>
+<tr><td>냉난방</td><td class="num">18</td><td class="num">61</td><td class="num">13.3%</td><td class="num">255.1 W</td></tr>
+<tr><td>실험실</td><td class="num">6</td><td class="num">30</td><td class="num">15.3%</td><td class="num">226.8 W</td></tr>
+<tr><td>환기</td><td class="num">2</td><td class="num">5</td><td class="num">16.7%</td><td class="num">474.0 W</td></tr>
+<tr><td>급탕</td><td class="num">1</td><td class="num">3</td><td class="num">36.1%</td><td class="num">143.0 W</td></tr>
+          <tr class="tot"><td>가중평균</td><td class="num">59</td><td class="num">282</td><td class="num ok">13.0%</td><td class="num">140.0 W</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">클라이언트(분전반) 수가 많은 용도일수록 오차율이 낮음 — 참여 분전반이 늘면 성능 개선이 예상됨.</p>
+    </div>
+
+    <div class="block">
+      <h3>ANN 대비 <em>SNN 예측 정확도</em></h3>
+      <p class="lede">iTransformer(ANN) 대 iSpikeformer(SNN). 가중평균 87.49% → 87.57%로 동등 이상이면서 1회 추론 에너지는 약 54% 낮음.</p>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>에너지 용도</th><th class="num">서브채널</th><th class="num">iTransformer</th><th class="num">iSpikeformer</th></tr></thead>
+        <tbody>
+<tr><td>냉난방</td><td class="num">61</td><td class="num">90.13%</td><td class="num ok">90.09%</td></tr>
+<tr><td>실험실</td><td class="num">5</td><td class="num">89.10%</td><td class="num ok">90.00%</td></tr>
+<tr><td>급탕</td><td class="num">30</td><td class="num">88.41%</td><td class="num ok">88.46%</td></tr>
+<tr><td>조명</td><td class="num">74</td><td class="num">86.17%</td><td class="num ok">87.34%</td></tr>
+<tr><td>환기</td><td class="num">109</td><td class="num">86.88%</td><td class="num ok">86.13%</td></tr>
+<tr><td>전열</td><td class="num">3</td><td class="num">76.27%</td><td class="num ok">79.59%</td></tr>
+          <tr class="tot"><td>가중평균</td><td class="num">282</td><td class="num">87.49%</td><td class="num ok">87.57%</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="block">
+      <h3>3차년도 <em>연구성과</em></h3>
+      <div class="kpi">
+        <div><b>3</b><span>학술논문</span><em>SCIE 2 · 비SCIE 1</em></div>
+        <div><b>8</b><span>학술회의 발표</span><em>국내 8건</em></div>
+        <div><b>2</b><span>특허 출원</span><em>미국 1 · 국내 1</em></div>
+        <div><b>1</b><span>프로토타입</span><em>뉴로패널 HW/SW</em></div>
+      </div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th class="num nocol">No.</th><th>논문명</th><th>학술지</th><th>주저자</th><th>구분</th><th class="num">게재일</th></tr></thead>
+        <tbody>
+<tr><td class="num nocol">1</td><td>A scalable data-driven framework for demand flexibility in commercial building clusters enabling grid-interactive efficient buildings</td><td>Journal of Building Engineering</td><td>한광우</td><td>SCIE</td><td class="num">’25.09.01</td></tr>
+<tr><td class="num nocol">2</td><td>Performance evaluation of GPT-4o on South Korean national exams for building mechanical equipment maintenance</td><td>Scientific Reports</td><td>최하늘</td><td>SCIE</td><td class="num">’25.08.19</td></tr>
+<tr><td class="num nocol">3</td><td>Grid-interactive Efficient Building(GEB) 구현을 위한 국내 건물 에너지 설계기준 및 인증제도 분석</td><td>설비공학논문집</td><td>최하늘</td><td>비SCIE</td><td class="num">’25.10.01</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th class="num nocol">No.</th><th>지식재산권 명칭</th><th>국가</th><th class="num">출원일</th><th class="num">출원번호</th></tr></thead>
+        <tbody>
+<tr><td class="num nocol">1</td><td>인공지능을 기반으로 한 대형 건물의 냉난방 관리 장치, 시스템 및 방법</td><td>미국</td><td class="num">’25.04.29</td><td class="num">19/193663</td></tr>
+<tr><td class="num nocol">2</td><td>분전반 기반 에너지 관리 시스템 및 그 방법</td><td>대한민국</td><td class="num">’25.09.01</td><td class="num">10-2025-0123125</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">학술회의 — 대한설비공학회 하계·동계, 한국계산뇌과학회, 대한전기학회 추계, 대한건축공학회 추계 등 총 8건.</p>
+    </div>
+
+    <div class="block">
+      <h3>4차년도(2026) <em>연구개발계획</em></h3>
+      <p class="lede">범용 지능형 알고리즘 확보와 실환경 검증·상용화 기반 확보를 두 축으로 삼는다.</p>
+      <div class="plan">
+        <div><b>SW · 제로샷 범용 모델</b><ul>
+          <li>KIER 3개 동 데이터 추가 활용, 용도 클래스 세분화</li>
+          <li>비학습 환경 대응 제로샷 추론 방안 정립</li>
+          <li>미래상태예측을 중요도 산정 입력으로 통합</li></ul></div>
+        <div><b>HW · 시작품 실증</b><ul>
+          <li>실제 분전반 설치·통신 제약을 반영한 시작품 개발</li>
+          <li>실부하 환경에서 절감효과·신뢰성 검증</li>
+          <li>분전반 실시간 데이터 연동</li></ul></div>
+        <div><b>Device · SNW 패턴 인식</b><ul>
+          <li>SNW 소자 기반 패턴 인식 가능성 검토</li>
+          <li>ZNCC 등 KPI 기반 변별력 분석</li>
+          <li>시스템 연계 방안 마련</li></ul></div>
+        <div><b>System · 계층 연계</b><ul>
+          <li>클라우드–온프레–엣지–건물 단 계층 구조 설계</li>
+          <li>뉴로패널 연동 에이전틱 AI 워크플로우 구성</li>
+          <li>BEMS 연계 검토</li></ul></div>
+        <div><b>Biz · 상용화 설계</b><ul>
+          <li>기술이전 대상 업체 요구·현장 수요 설계 반영</li>
+          <li>연구성과 실용화 기반 확보</li></ul></div>
+      </div>
+      <p class="note">4차년도 연구개발비 — 내부인건비 197,000천원 · 직접비 200,000천원 · 간접비 73,000천원</p>
+    </div>
+
+    <div class="block">
+      <h3>과제 <em>개요</em></h3>
+      <div class="meta">
+        <div><span>사업명</span><b>한국에너지기술연구원 기본사업</b></div>
+        <div><span>연구개발과제번호</span><b>GP2023-0007</b></div>
+        <div><span>연구개발기간</span><b>2023.01.01 – 2026.12.31 (48개월)</b></div>
+        <div><span>해당 연도</span><b>3차년 (2025.01.01 – 2025.12.31)</b></div>
+        <div><span>연구책임자</span><b>김종훈 책임연구원</b></div>
+      </div>
+    </div>
+
+    <div class="closing">
+      <div class="box">
+        <span class="tag">Autonomous EMS 뉴로모픽</span>
+        <h3>분전반이 스스로 부하를 가려내고,<br>꺼도 되는 스위치를 스스로 고른다.</h3>
+        <p>부하분리 · 미래상태 예측 · 중요도 판단을 하나의 엣지 장치로 묶어,<br>2개 동 6개 분전반에서 15.6%의 에너지절감을 확인했습니다.</p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="f">
+        <span><b>Building Cognition Lab (BCL)</b> · 한국에너지기술연구원(KIER) · 김종훈 책임연구원</span>
+        <span>© KIM Jonghun. All rights reserved.</span>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<script>
+const PANELS = [{"c": "c1", "no": "01", "img": "images/tech01.webp", "t2": "부하분리", "t1": "기술", "en": "NILM", "name": "부하분리 기술", "lead": "분전반 메인 채널에 합쳐진 시계열에서 서브 채널별 부하를 되살린다. 20개 분전반·282개 서브채널을 에너지용도 6종별 연합학습 서버로 나누어 학습했고, 테스트 구간 가중평균 오차율 13.0%(nMAE)를 기록했다.", "st": [{"t": "연합학습 기반 학습 구조 설계", "items": [["서버는 가중치만 집계·배포 — 분전반 데이터는 외부로 나가지 않음", "연합학습"], ["클라이언트 = 분전반(건물코드 + 통신IP + 분전반ID)", "59 Set"], ["조명·냉난방·전열·환기·급탕·실험실 6종별 서버 분리", "6 서버"], ["KIER 행정동·복합동 20 set, 1분 단위 1년치(’24.03~’25.02)", "데이터"], ["계절 교차분할 학습 70% : 검증 15% : 테스트 15%", "분할"]]}, {"t": "백본 모델과 손실함수", "items": [["1-D CNN 5층 백본 (kernel 5, ch 32, stride 1, padding 2)", "Conv1D"], ["Lazy FC 초기화 + Softplus−log(2) 출력 (비음수·제로중심화)", "출력단"], ["Masked TW-MSE 손실 — 전이임계 δ=25W, 전이 가중계수 κ=4", "손실함수"], ["집계 알고리즘 비교(FedAvg·FedOpt·Ditto) 후 Ditto 채택, λ=0.2", "Ditto"], ["모델 1개 14.2M · 전체 약 924M (서버 85.2M + 클라이언트 837M)", "규모"]]}, {"t": "부하분리 성능평가", "items": [["전체 가중평균 nMAE 13.0% · MAE 140.0W", "13.0%"], ["행정동 13.6% · 복합동 11.7% — 평균부하 크기와 오차율 간 상관 없음", "일반화"], ["최대 33채널 다채널 분전반도 12.1% 수준으로 분리", "33채널"], ["용도별: 전열 11.3% · 조명 13.2% · 냉난방 13.3% · 실험실 15.3%", "용도별"], ["클라이언트가 적은 환기(16.7%)·급탕(36.1%)은 참여 확대 시 개선 전망", "과제"]]}]}, {"c": "c2", "no": "02", "img": "images/tech02.webp", "t2": "미래상태", "t1": "예측", "en": "FORECAST", "name": "미래상태 예측", "lead": "분전반마다 채널 수가 달라 입력 차원이 어긋나는 문제를, 학습 가능한 query로 이질적 입력을 공통 차원으로 압축하는 QAP 모듈로 풀었다. 스파이크 기반 iSpikeformer를 백본으로 삼아 정확도 87.57%와 저전력 추론을 함께 얻었다.", "st": [{"t": "QAP 기반 연합학습 프레임워크", "items": [["FedPer 확장 — 공통 표현 레이어와 개인화 예측 헤드를 분리", "FedPer"], ["Value projection: 서브부하 유효전력을 선형 임베딩으로 차원 통일", "QAP ①"], ["Feature embedding: 서브부하 인덱스를 학습 가능한 벡터로 변환", "QAP ②"], ["Cross attention: 학습 query로 서브부하 정보를 통일 표현으로 압축", "QAP ③"], ["Global context(mean·max) + 시간특성(월·일·시) 결합", "QAP ④⑤"]]}, {"t": "스파이크 기반 백본", "items": [["iSpikeformer 백본 — event 기반 저전력 시계열 특징 추출", "SNN"], ["personal head에서 분전반별 채널 수로 복원, multi-step 예측", "다채널"], ["입력 96 step → 출력 48 step, 15분 리샘플, MSE 손실", "설정"], ["융합동·복합동 23개 분전반, ’24.03~’25.02 1분 단위 데이터", "23 Set"]]}, {"t": "예측 정확도와 추론 에너지", "items": [["가중평균 예측정확도 87.57% — 3차년도 목표 85% 달성", "87.6%"], ["ANN 기반 iTransformer 87.49% 대비 동등 이상", "비교"], ["파라미터 0.1085M vs 0.1063M — 두 모델 규모는 유사", "경량"], ["1회 추론 에너지 약 54% 절감 (조명 용도 5채널 케이스 스터디)", "−54%"], ["출력 헤드까지 스파이크화 시 약 90% 추가 절감 기대", "4차년도"]]}]}, {"c": "c3", "no": "03", "img": "images/tech03.webp", "t2": "중요도", "t1": "판단", "en": "SCORING", "name": "중요도 판단", "lead": "서브부하의 전력 시계열만으로 기저부하·중앙 냉난방·재실 패턴을 가려내 ‘꺼도 되는 스위치’를 정한다. HMM 스케줄 추정과 코사인 유사도를 3단계 제어로직으로 엮었다.", "st": [{"t": "3단계 제어로직", "items": [["1단계 — 기저부하로 분류된 서브부하는 스위치 유지", "기저부하"], ["2단계 — 냉난방 스케줄과의 유사도로 중앙 냉난방 부하 판별", "냉난방"], ["3단계 — 재실 스케줄 유사도로 낭비 부하 판별", "재실"], ["가동시간 10분 이상이면 중요 부하로 보는 보조 판단 추가", "보조로직"]]}, {"t": "HMM 스케줄 추정", "items": [["은닉상태 2개(ON/OFF), covariance_type=diag, n_iter=100", "HMM"], ["초기상태확률·상태전이확률·상태별 평균/공분산을 학습", "파라미터"], ["예측오차율 — 냉난방 6.1%, 재실 1.7%", "성능"]]}, {"t": "유사도 판정과 실증", "items": [["10W 미만 컷오프 후 1시간 단위 이진화(상위 20% 기준)", "전처리"], ["코사인 유사도 0.6 이상이면 중요 부하로 판별", "기준"], ["KIER 대전 본원 실데이터로 제어로직 작동 확인", "실증"], ["기저부하·중앙 냉난방은 유지, 전열·전동스크린은 스케줄 기반 제어", "결과"]]}]}, {"c": "c4", "no": "04", "img": "images/tech04.webp", "t2": "뉴로패널", "t1": "프로토타입", "en": "PROTOTYPE", "name": "뉴로패널 프로토타입", "lead": "알고리즘을 눈으로 보여주는 실물. 분전반 형태 케이싱에 32인치 터치 패널과 Jetson Orin Nano를 넣어, 부하분리 결과부터 ‘끌 스위치’ 권고까지 이어지는 흐름을 시연한다.", "st": [{"t": "프로토타입 HW", "items": [["철제 분전반 케이싱 + 32인치 터치 모니터 + 소형 PC 구성", "구성"], ["NVIDIA Jetson Orin Nano — 67 TOPS, 1024코어 GPU, 8GB LPDDR5, 7–25W", "소형 PC"], ["측면 전원부와 냉각팬 3개, 이동용 손잡이·바퀴", "제작"], ["전면 도어 개방 시 분전반 모사 이미지와 기능 화면 노출", "형태"]]}, {"t": "프로토타입 SW", "items": [["백엔드 — Python 3.11 · FastAPI · Uvicorn · Pydantic · PyInstaller", "백엔드"], ["프론트엔드 — Android(Java, SDK API 33) 기반 7개 페이지", "프론트"], ["안드로이드 PC ↔ 소형 PC 이더넷 연결, API 방식 송수신", "연동"]]}, {"t": "시연 시나리오", "items": [["실제 분전반 6개소 데이터 탑재 (행정동 LN-1A·1B·2B, 복합동 MCC-PH·LN-02·LN-04)", "6개소"], ["부하분리 결과 → 끌 스위치 권고 → 메인 전력 감소 애니메이션", "흐름"], ["실시간 데이터 수집·연동은 4차년도 과제", "계획"]]}]}, {"c": "c5", "no": "05", "img": "images/tech05.webp", "t2": "뉴로모픽", "t1": "소자", "en": "Ag NWN", "name": "뉴로모픽 소자", "lead": "은 나노와이어 네트워크(Ag NWN)를 웨이퍼 스케일로 균일하게 만드는 공정을 세웠다. 자체 개발한 Slow-spin coating으로 pinning을 억제해 균일도 5.91%, 구동전압 1V, 17.1 pJ/spike를 확보했다.", "st": [{"t": "웨이퍼 스케일 전극 패터닝", "items": [["4인치 산화실리콘 웨이퍼에 6×6mm 패드를 다수 동시 제작", "설계"], ["크롬 마스크 제작 후 포토리소그래피로 미세 전극 패턴 전사", "공정"], ["PVD로 Cr/Au (5/50nm) 전극 증착", "증착"]]}, {"t": "Slow-spin coating 공정 개발", "items": [["DI water : 에탄올 1:1 혼합용매로 증발속도·점도 조절", "용액"], ["PVP 3wt% 첨가로 hysteresis 특성 조절", "첨가제"], ["5 µL 토출 후 500rpm 저속 회전 + heat gun 가열", "조건"], ["마랑고니 대류로 지속 믹싱, 가장자리 pinning 효과 억제", "원리"]]}, {"t": "소자 특성 평가", "items": [["SEM 기반 형태학적 분석으로 inter-connection 목표 달성", "~10⁷"], ["균일도 5.91% — 당해연도 목표(<10%) 달성", "5.91%"], ["DC voltage sweep 구동전압 1V까지 감소 — 4차년도 목표 조기 달성", "1 V"], ["5V·0.5ms 펄스 구동 에너지 17.1 pJ/spike — 4차년도 목표 조기 달성", "17.1 pJ"]]}]}];
+
+const count = p => p.st.reduce((a,s)=>a+s.items.length,0);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const deck = document.getElementById("deck");
+const stage = document.getElementById("stage");
+
+deck.innerHTML = PANELS.map((p,i)=>`
+  <article class="card ${p.c}" data-i="${i}">
+    <div class="card-flip">
+      <div class="card-front">
+        ${p.img ? `<div class="card-img"><img src="${p.img}" alt=""></div>` : ""}
+        <span class="card-value">핵심기술 ${p.no}</span>
+        <span class="arrow">↗</span>
+        <div class="card-info">
+          <p class="card-info-title"><span>${esc(p.t2)}</span> ${esc(p.t1)}</p>
+        </div>
+      </div>
+      <div class="card-back">
+        <span class="card-value">핵심기술 ${p.no}</span>
+        <p class="card-title"><span>${esc(p.t2)}</span> ${esc(p.t1)}</p>
+        <ul class="card-list">
+          ${p.st.map((st,j)=>`<li><button type="button" data-p="${i}" data-s="${j}"><span>단계 ${j+1}</span>${esc(st.t)}</button></li>`).join("")}
+        </ul>
+        <p class="hint">항목을 클릭하면 상세 내용으로 이동합니다</p>
+      </div>
+    </div>
+  </article>`).join("");
+
+const cards=[...deck.querySelectorAll(".card")];
+const FINAL_Z=[1,3,5,2,4];
+const INIT_ROT=[0,-10,-20,-30,-40], INIT_Z=[5,4,3,2,1];
+function getMaxDist(w){
+  const cardW=450, f=1.2;
+  if(w<=1440) return ((w-cardW)/2)*f;
+  if(w<=1920) return Math.min(((w-cardW)/2)*f, 800);
+  return Math.min(((w-cardW)/2)*f, 900);
+}
+function finalPos(maxD){
+  return [
+    {x:-maxD*0.9, y:80, r:-8},
+    {x:-maxD*0.45,y:40, r: 3},
+    {x: 0,        y: 0, r: 0},
+    {x: maxD*0.45,y:40, r: 6},
+    {x: maxD*0.9, y:80, r:-3}
+  ];
+}
+let spread=false;
+/* --kr = korea.kr html font-size (10·9·8·7px). 1300px 미만에서는 연속적으로 줄여
+   transform:scale 없이도 화면에 맞추고, 글자는 항상 실제 크기로 렌더링된다. */
+const FIT_W=1300;
+function krNow(vw){
+  if(vw>1920) return 10;
+  if(vw>1680) return 9;
+  if(vw>1480) return 8;
+  if(vw>=FIT_W) return 7;
+  return 7*(vw/FIT_W);
+}
+function metrics(){
+  const vw=Math.max(320,document.documentElement.clientWidth);
+  const F=Math.min(1, vw/FIT_W);
+  const kr=krNow(vw);
+  document.documentElement.style.setProperty('--kr', kr.toFixed(3)+'px');
+  const maxD=getMaxDist(Math.max(vw,FIT_W))*F;
+  const ty0=4.05*kr;                 /* 80kr 컨테이너 안에서 71.9kr 카드를 세로 중앙 */
+  const sh=80*kr+80*F;
+  return {kr,maxD,ty0,sh,F};
+}
+function apply(m,x,y,r){
+  return `translate(${x.toFixed(1)}px,${(m.ty0+y*m.F).toFixed(1)}px) rotate(${r}deg)`;
+}
+function place(){
+  const m=metrics();
+  stage.style.setProperty("--sh", m.sh.toFixed(1)+"px");
+  const pos=finalPos(m.maxD);
+  cards.forEach((c,i)=>{
+    if(spread){
+      c.style.zIndex=FINAL_Z[i];
+      c.style.transform=apply(m,pos[i].x,pos[i].y,pos[i].r);
+    }else{
+      c.style.zIndex=INIT_Z[i];
+      c.style.transform=apply(m,0,0,0);
+    }
+  });
+}
+place();
+window.addEventListener("resize",place);
+
+/* 원본과 동일한 등장 연출: 스택 → 회전 → 펼침 */
+function intro(){
+  const m0=metrics();
+  cards.forEach((c,i)=>setTimeout(()=>{
+    c.style.transform=apply(m0,0,0,INIT_ROT[i]);
+  }, i*150));
+  setTimeout(()=>{
+    const m=metrics(), pos=finalPos(m.maxD);
+    cards.forEach((c,i)=>c.style.zIndex=FINAL_Z[i]);
+    [[2,0],[1,200],[3,200],[0,400],[4,400]].forEach(([i,d])=>setTimeout(()=>{
+      cards[i].style.transform=apply(m,pos[i].x,pos[i].y,pos[i].r);
+    },d));
+    setTimeout(()=>{spread=true;place();},1000);
+  }, 5*150+600);
+}
+let played=false;
+new IntersectionObserver((es,ob)=>{
+  es.forEach(e=>{ if(e.isIntersecting && !played){ played=true; intro(); ob.disconnect(); } });
+},{threshold:.25}).observe(stage);
+
+deck.addEventListener("click",e=>{
+  const btn=e.target.closest(".card-list button");
+  if(btn){e.stopPropagation();openStrategy(+btn.dataset.p,+btn.dataset.s);return;}
+  const card=e.target.closest(".card");
+  if(!card) return;
+  if(window.matchMedia("(hover: none)").matches){
+    cards.forEach(c=>{ if(c!==card) c.classList.remove("flip"); });
+    card.classList.toggle("flip");
+  }
+});
+
+document.getElementById("accs").innerHTML = PANELS.map((p,i)=>`
+  <section class="acc ${p.c}" id="panel-${i}">
+    <button class="acc-h" data-p="${i}">
+      <span class="no">${p.no}</span>
+      <span class="tt"><b>${esc(p.name)}</b><span>${esc(p.en)}</span></span>
+      <span class="cnt">${count(p)}개</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="acc-b">
+      <p class="lead">${esc(p.lead)}</p>
+      ${p.st.map((s,j)=>`
+        <div class="strat" id="s-${i}-${j}">
+          <button class="strat-h" data-p="${i}" data-s="${j}">
+            <span class="b">단계 ${j+1}</span><span class="t">${esc(s.t)}</span><span class="a">›</span>
+          </button>
+          <div class="strat-b">
+            <ol>${s.items.map(it=>`<li><span>${esc(it[0])}<span class="tag">${esc(it[1])}</span></span></li>`).join("")}</ol>
+          </div>
+        </div>`).join("")}
+    </div>
+  </section>`).join("");
+
+document.getElementById("accs").addEventListener("click",e=>{
+  const ah=e.target.closest(".acc-h"); if(ah){ah.parentElement.classList.toggle("open");return;}
+  const sh=e.target.closest(".strat-h"); if(sh){sh.parentElement.classList.toggle("open");}
+});
+function openStrategy(pi,si){
+  document.getElementById("panel-"+pi).classList.add("open");
+  const st=document.getElementById(`s-${pi}-${si}`); st.classList.add("open");
+  setTimeout(()=>window.scrollTo({top:st.getBoundingClientRect().top+window.scrollY-86,behavior:"smooth"}),60);
+}
+document.getElementById("panel-0").classList.add("open");
+document.getElementById("s-0-0").classList.add("open");
+</script>
+<script>
+/* 헤더 아랫줄의 자간을 조절해 윗줄(제목) 폭과 같아지도록 맞춤 */
+(function(){
+  function fit(){
+    var b=document.querySelector('.brand .txt b'),
+        s=document.querySelector('.brand .txt span');
+    if(!b||!s) return;
+    var n=s.textContent.length; if(!n) return;
+    s.style.letterSpacing='0px'; s.style.fontSize='';
+    var base=parseFloat(getComputedStyle(s).fontSize);
+    var nat=s.getBoundingClientRect().width, tw=b.getBoundingClientRect().width;
+    if(nat>tw && tw>0){                       /* 자간만으로 줄이면 너무 빽빽해져 크기도 15%까지 함께 줄임 */
+      s.style.fontSize=Math.max(base*0.85, base*tw/nat).toFixed(2)+'px';
+    }
+    var ls=0;
+    for(var i=0;i<8;i++){
+      var t=b.getBoundingClientRect().width, c=s.getBoundingClientRect().width;
+      if(!t) return;
+      if(Math.abs(t-c)<0.2) break;
+      ls += (t-c)/n;
+      s.style.letterSpacing=ls.toFixed(3)+'px';
+    }
+  }
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fit); }
+  window.addEventListener('load',fit);
+  window.addEventListener('resize',fit);
+})();
+</script>
+</body>
+</html>
