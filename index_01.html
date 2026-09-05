@@ -58,6 +58,15 @@ header.top{position:fixed;inset:0 0 auto 0;z-index:60;
 .brand .txt{line-height:1.15}
 .brand .txt b{display:block;font-family:var(--serif);font-size:16px;font-weight:800;letter-spacing:-.03em}
 .brand .txt span{display:block;font-size:11px;color:var(--ink2);font-weight:600}
+/* 헤더 CTA 아래 — 이 페이지로 오는 QR */
+.hdr-qr{position:fixed;z-index:59;top:76px;right:20px;display:block;padding:7px;
+  background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1px solid var(--line);border-radius:12px;line-height:0;
+  box-shadow:0 4px 16px rgba(17,17,17,.06);transition:box-shadow .2s,border-color .2s}
+.hdr-qr:hover{border-color:#c2c8d0;box-shadow:0 6px 20px rgba(17,17,17,.14)}
+.hdr-qr{width:var(--ctaw,119px);box-sizing:border-box}
+.hdr-qr img{width:100%;height:auto;display:block;border-radius:5px}
+@media (max-width:1180px){.hdr-qr{display:none}}
 .top-cta{display:inline-flex;align-items:center;gap:7px;border:0;border-radius:100px;
   padding:5px 15px;font-size:12px;line-height:1.6;font-weight:600;color:#fff;white-space:nowrap;
   background:linear-gradient(90deg,#5E5A9F 0%,#CA5D35 100%);transition:.2s}
@@ -568,6 +577,9 @@ footer b{color:#58616A;font-weight:700}
     <a class="top-cta" href="#tech"><i></i>수행 내용 보기</a>
   </div>
 </header>
+<a class="hdr-qr" href="https://jonghun07.github.io/bcl/index_01.html" aria-label="이 페이지 주소 QR 코드">
+  <img src="images/qr.webp" width="472" height="472" decoding="async" alt="">
+</a>
 
 <section class="sect" id="parts">
   <div class="wrap">
@@ -1109,6 +1121,20 @@ document.querySelectorAll('.rep-h').forEach(function(h){
     <path d="M12 19V5M5 12l7-7 7 7"/>
   </svg><span>맨 위로</span>
 </button>
+
+<script>
+/* QR 박스를 상단 CTA 버튼과 같은 폭으로 */
+(function(){
+  var cta=document.querySelector('.top-cta'), qr=document.querySelector('.hdr-qr');
+  if(!cta||!qr) return;
+  function sync(){
+    document.documentElement.style.setProperty('--ctaw', cta.offsetWidth+'px');
+  }
+  sync();
+  window.addEventListener('resize',sync);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(sync);
+})();
+</script>
 
 <script>
 /* 맨 위로 버튼 */
