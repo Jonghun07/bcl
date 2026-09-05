@@ -33,7 +33,7 @@
 @media (max-width:1680px){:root{--kr:8px}}
 @media (max-width:1480px){:root{--kr:7px}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
   font-size:16px;line-height:1.6;letter-spacing:-.015em;overflow-x:hidden}
 img{max-width:100%;display:block}
@@ -54,11 +54,11 @@ header.top{position:fixed;inset:0 0 auto 0;z-index:60;
 .brand .txt{line-height:1.15}
 .brand .txt b{display:block;font-family:var(--serif);font-size:16px;font-weight:800;letter-spacing:-.03em}
 .brand .txt span{display:block;font-size:11px;color:var(--ink2);font-weight:600}
-.top-cta{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:100px;
-  padding:11px 22px;font-size:13px;font-weight:600;color:#fff;
+.top-cta{display:inline-flex;align-items:center;gap:7px;border:0;border-radius:100px;
+  padding:5px 15px;font-size:12px;line-height:1.6;font-weight:600;color:#fff;white-space:nowrap;
   background:linear-gradient(90deg,#5E5A9F 0%,#CA5D35 100%);transition:.2s}
 .top-cta:hover{filter:brightness(1.08)}
-.top-cta i{width:6px;height:6px;border-radius:50%;background:#fff;display:block;animation:blink 1.8s infinite}
+.top-cta i{width:5px;height:5px;border-radius:50%;background:#fff;display:block;animation:blink 1.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
 /* hero */
@@ -98,7 +98,7 @@ header.top{position:fixed;inset:0 0 auto 0;z-index:60;
 .card{position:absolute;inset:0;transform:translate(0px,0px) rotate(0deg);
   transition:transform .6s cubic-bezier(.075,.82,.165,1),z-index 0s}
 .card-flip{position:relative;width:100%;height:100%;transition:.5s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
-.card:hover{z-index:6!important}
+.card:hover{z-index:99!important}
 .card:hover .card-flip,.card.flip .card-flip{transform:rotateY(180deg)}
 .card-front,.card-back{position:absolute;inset:0;width:100%;height:100%;color:#fff;
   backface-visibility:hidden;-webkit-backface-visibility:hidden;
@@ -129,7 +129,7 @@ header.top{position:fixed;inset:0 0 auto 0;z-index:60;
   line-height:calc(4.08 * var(--kr));letter-spacing:calc(-0.102 * var(--kr));margin-bottom:calc(2.4 * var(--kr))}
 .card-back .card-title span{font-weight:700}
 .card-back .card-list{display:flex;flex-direction:column;gap:calc(1 * var(--kr));list-style:none;margin:0;padding:0}
-.card-back .card-list li{border:1px solid rgba(255,255,255,.20);border-radius:calc(.8 * var(--kr));overflow:hidden}
+.card-back .card-list li{border-radius:calc(.8 * var(--kr))}   /* 테두리는 버튼 쪽 하나만 — 이중선 방지 */
 .card-back .card-list li button{display:flex;width:100%;height:calc(5.3 * var(--kr));padding:0 calc(1.6 * var(--kr));
   border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.18);color:#fff;font-weight:500;
   font-size:calc(1.7 * var(--kr));letter-spacing:calc(-0.032 * var(--kr));border-radius:calc(.8 * var(--kr));
@@ -162,12 +162,43 @@ header.top{position:fixed;inset:0 0 auto 0;z-index:60;
 .c4 .card-back{background:linear-gradient(120deg,var(--card4d) 0%,var(--card4) 100%)}
 .c5 .card-back{background:linear-gradient(120deg,var(--card5d) 0%,var(--card5) 100%)}
 
+/* 좁은 화면(<1300px) — 원본처럼 스택형 카드 + PREV/NEXT */
+.deck-nav{display:none;align-items:center;justify-content:center;gap:26px;margin-top:16px}
+.deck-nav button{display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:8px 6px;
+  font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.08em;color:#222;cursor:pointer;transition:.2s}
+.deck-nav button:disabled{opacity:.25;cursor:default}
+
 /* 참고 웹페이지의 스크롤 마크 (card-slide-scroll) */
-.card-slide-scroll{display:flex;margin-top:-20px;flex-direction:column;justify-content:center;align-items:center;gap:20px}
+.card-slide-scroll{display:flex;margin-top:-64px;flex-direction:column;justify-content:center;align-items:center;gap:12px}
 .card-slide-scroll svg{animation:scrollTopBottom 1s ease-in-out infinite}
-.card-slide-scroll span{color:#222;font-family:var(--sans);font-weight:600;font-size:16px;line-height:19.2px;
-  letter-spacing:3.2px;text-align:center}
-@keyframes scrollTopBottom{0%{transform:translateY(-8px)}50%{transform:translateY(8px)}100%{transform:translateY(-8px)}}
+.card-slide-scroll svg .wheel{animation:wheelGlow 1.8s ease-in-out infinite}
+@keyframes wheelGlow{0%,100%{opacity:1}50%{opacity:.22}}
+.card-slide-scroll span{color:#222;font-family:var(--sans);font-weight:600;font-size:12.5px;line-height:15px;
+  letter-spacing:2.4px;text-align:center}
+@keyframes scrollTopBottom{0%{transform:translateY(-6px)}50%{transform:translateY(6px)}100%{transform:translateY(-6px)}}
+
+/* ===== 좁은 화면 보정 ===== */
+@media (max-width:1299px){
+  .card-slide-scroll{margin-top:14px}
+  .sect{padding:120px 0 20px}
+}
+@media (max-width:640px){
+  .top-in{padding:0 14px;gap:10px}
+  .brand{gap:8px}
+  .brand .mark svg{height:28px}
+  .brand .txt b{font-size:13.5px}
+  .brand .txt span{font-size:10px}
+  .top-cta{padding:4px 12px;font-size:11px;white-space:nowrap;flex:none}
+  .sect{padding:92px 0 16px}
+  .sect-h{margin-bottom:30px}
+  .hero.below{padding:70px 0 40px}
+  .detail{padding:50px 0 70px}
+  .block{margin-top:46px}
+  .wrap{padding:0 18px}
+  .duo article{padding:22px 20px 18px}
+  .callout{padding:16px 18px}
+}
+@media (max-width:430px){ .top-cta{display:none} }
 
 /* detail */
 .detail{padding:80px 0 90px}
@@ -379,10 +410,14 @@ footer b{color:#58616A;font-weight:700}
     </div>
     <div class="deck-area">
       <div class="deck-stage" id="stage"><div class="deck" id="deck"></div></div>
+      <div class="deck-nav" id="decknav">
+        <button type="button" id="prev">&#8592; PREV</button>
+        <button type="button" id="next">NEXT &#8594;</button>
+      </div>
       <div class="card-slide-scroll" aria-hidden="true">
-        <svg width="20" height="30" viewBox="0 0 20 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="16" height="24" viewBox="0 0 20 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1" y="1" width="18" height="28" rx="9" stroke="#222" stroke-width="1.6"/>
-          <line x1="10" y1="7" x2="10" y2="12" stroke="#222" stroke-width="1.6" stroke-linecap="round"/>
+          <line class="wheel" x1="10" y1="7" x2="10" y2="12" stroke="#2FA46A" stroke-width="1.8" stroke-linecap="round"/>
         </svg>
         <span>SCROLL</span>
       </div>
@@ -680,54 +715,79 @@ function finalPos(maxD){
   ];
 }
 let spread=false;
-/* --kr = korea.kr html font-size (10·9·8·7px). 1300px 미만에서는 연속적으로 줄여
-   transform:scale 없이도 화면에 맞추고, 글자는 항상 실제 크기로 렌더링된다. */
-const FIT_W=1300;
+let active=0;                       /* 스택 모드에서 맨 앞에 오는 카드 */
+const prevBtn=document.getElementById('prev'), nextBtn=document.getElementById('next'),
+      deckNav=document.getElementById('decknav');
+const FAN_W=1300;                   /* 이 폭 미만이면 원본처럼 스택 캐러셀 */
 function krNow(vw){
   if(vw>1920) return 10;
   if(vw>1680) return 9;
   if(vw>1480) return 8;
-  if(vw>=FIT_W) return 7;
-  return 7*(vw/FIT_W);
+  if(vw>=FAN_W) return 7;
+  const cw=Math.min(340, Math.max(224, vw-96));   /* 스택 모드: 카드 폭을 화면에 맞춤 */
+  return cw/45;
 }
 function metrics(){
   const vw=Math.max(320,document.documentElement.clientWidth);
-  const F=Math.min(1, vw/FIT_W);
   const kr=krNow(vw);
   document.documentElement.style.setProperty('--kr', kr.toFixed(3)+'px');
-  const maxD=getMaxDist(Math.max(vw,FIT_W))*F;
-  const ty0=4.05*kr;                 /* 80kr 컨테이너 안에서 71.9kr 카드를 세로 중앙 */
-  const sh=80*kr+80*F;
-  return {kr,maxD,ty0,sh,F};
+  if(vw<FAN_W) return {stack:true, kr, ty0:0, sh:71.9*kr+30, maxD:0};
+  return {stack:false, kr, ty0:4.05*kr, sh:80*kr+80, maxD:getMaxDist(vw)};
 }
-function apply(m,x,y,r){
-  return `translate(${x.toFixed(1)}px,${(m.ty0+y*m.F).toFixed(1)}px) rotate(${r}deg)`;
+function apply(m,x,y,r,sc){
+  return `translate(${x.toFixed(1)}px,${(m.ty0+y).toFixed(1)}px) rotate(${r}deg)`
+       + (sc && sc!==1 ? ` scale(${sc.toFixed(3)})` : '');
 }
 function place(){
   const m=metrics();
   stage.style.setProperty("--sh", m.sh.toFixed(1)+"px");
+  deckNav.style.display = m.stack ? 'flex' : 'none';
+
+  if(m.stack){        /* 스택 캐러셀 — 원본 Swiper cards 효과 수치
+                         offset = (8 - 0.75·|o|)% × 카드폭  (멀수록 간격이 좁아짐)
+                         scale  = 1200 / (1200 + 100·|o|)   (원본의 translateZ 원근 축소) */
+    const cw=45*m.kr;
+    cards.forEach((c,i)=>{
+      const o=i-active, a=Math.abs(o);
+      const dx=Math.sign(o)*(8-0.75*a)*a/100*cw;
+      const sc=1200/(1200+100*a);
+      c.style.pointerEvents='auto';
+      c.style.opacity='1';
+      c.style.zIndex=String(20-a);
+      c.style.transform=apply(m, dx, 0, o*2, sc);
+    });
+    prevBtn.disabled=(active===0);
+    nextBtn.disabled=(active===cards.length-1);
+    return;
+  }
+
+  cards.forEach(c=>{c.style.opacity='1';c.style.pointerEvents='auto';});
   const pos=finalPos(m.maxD);
   cards.forEach((c,i)=>{
-    if(spread){
-      c.style.zIndex=FINAL_Z[i];
-      c.style.transform=apply(m,pos[i].x,pos[i].y,pos[i].r);
-    }else{
-      c.style.zIndex=INIT_Z[i];
-      c.style.transform=apply(m,0,0,0);
-    }
+    if(spread){ c.style.zIndex=FINAL_Z[i]; c.style.transform=apply(m,pos[i].x,pos[i].y,pos[i].r); }
+    else      { c.style.zIndex=INIT_Z[i]; c.style.transform=apply(m,0,0,0); }
   });
 }
+function go(i){
+  active=Math.max(0,Math.min(cards.length-1,i));
+  cards.forEach(c=>c.classList.remove('flip'));
+  place();
+}
+prevBtn.addEventListener('click',()=>go(active-1));
+nextBtn.addEventListener('click',()=>go(active+1));
 place();
 window.addEventListener("resize",place);
 
-/* 원본과 동일한 등장 연출: 스택 → 회전 → 펼침 */
+/* 원본과 동일한 등장 연출: 스택 → 회전 → 펼침 (넓은 화면에서만) */
 function intro(){
+  if(metrics().stack){ spread=true; place(); return; }
   const m0=metrics();
   cards.forEach((c,i)=>setTimeout(()=>{
     c.style.transform=apply(m0,0,0,INIT_ROT[i]);
   }, i*150));
   setTimeout(()=>{
-    const m=metrics(), pos=finalPos(m.maxD);
+    const m=metrics(); if(m.stack){ spread=true; place(); return; }
+    const pos=finalPos(m.maxD);
     cards.forEach((c,i)=>c.style.zIndex=FINAL_Z[i]);
     [[2,0],[1,200],[3,200],[0,400],[4,400]].forEach(([i,d])=>setTimeout(()=>{
       cards[i].style.transform=apply(m,pos[i].x,pos[i].y,pos[i].r);
@@ -743,13 +803,23 @@ new IntersectionObserver((es,ob)=>{
 deck.addEventListener("click",e=>{
   const btn=e.target.closest(".card-list button");
   if(btn){e.stopPropagation();openStrategy(+btn.dataset.p,+btn.dataset.s);return;}
-  const card=e.target.closest(".card");
-  if(!card) return;
-  if(window.matchMedia("(hover: none)").matches){
+  const card=e.target.closest(".card"); if(!card) return;
+  const i=+card.dataset.i, st=metrics().stack;
+  if(st && i!==active){ go(i); return; }
+  if(st || window.matchMedia("(hover: none)").matches){
     cards.forEach(c=>{ if(c!==card) c.classList.remove("flip"); });
     card.classList.toggle("flip");
   }
 });
+
+/* 좌우 스와이프 */
+let _sx=null;
+deck.addEventListener('touchstart',e=>{ _sx=e.touches[0].clientX; },{passive:true});
+deck.addEventListener('touchend',e=>{
+  if(_sx===null) return;
+  const dx=e.changedTouches[0].clientX-_sx; _sx=null;
+  if(metrics().stack && Math.abs(dx)>40) go(active+(dx<0?1:-1));
+},{passive:true});
 
 document.getElementById("accs").innerHTML = PANELS.map((p,i)=>`
   <section class="acc ${p.c}" id="panel-${i}">
