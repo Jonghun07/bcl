@@ -36,6 +36,8 @@
 @media (max-width:1480px){:root{--kr:7px}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;overflow-x:clip}
+/* 고정 헤더에 가리지 않도록 앵커 도착 지점을 아래로 밀어둔다 */
+#tech,#detail{scroll-margin-top:96px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
   font-size:16px;line-height:1.6;letter-spacing:-.015em;overflow-x:hidden}
 img{max-width:100%;display:block}
@@ -186,6 +188,26 @@ header.top{position:fixed;inset:0 0 auto 0;z-index:60;
 .deck-nav button{display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:8px 6px;
   font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.08em;color:#222;cursor:pointer;transition:.2s}
 .deck-nav button:disabled{opacity:.25;cursor:default}
+
+/* 홍보 영상 — 그라데이션 패널과 같은 폭 */
+.promo{margin-top:20px;border-radius:24px;overflow:hidden;background:#0d1220;
+  aspect-ratio:16/9;position:relative;box-shadow:0 8px 30px rgba(17,17,17,.10)}
+.promo video{width:100%;height:100%;display:block;object-fit:cover;background:#0d1220}
+@media (max-width:560px){.promo{border-radius:16px}}
+
+/* 맨 위로 — 스크롤을 조금 내리면 조용히 나타난다 */
+.totop{position:fixed;right:clamp(18px,2.4vw,34px);bottom:clamp(18px,2.4vw,34px);z-index:70;
+  width:48px;height:48px;display:grid;place-items:center;padding:0;
+  background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border:1px solid var(--line);border-radius:50%;cursor:pointer;
+  box-shadow:0 6px 20px rgba(17,17,17,.10);color:#4a5260;
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity .35s ease,transform .35s ease,visibility .35s,border-color .2s,color .2s,box-shadow .2s}
+.totop.on{opacity:1;visibility:visible;transform:translateY(0)}
+.totop:hover{color:#111;border-color:#c2c8d0;box-shadow:0 8px 24px rgba(17,17,17,.16)}
+.totop svg{width:17px;height:17px;display:block}
+.totop span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:560px){.totop{width:42px;height:42px}}
 
 /* 참고 웹페이지의 스크롤 마크 (card-slide-scroll) */
 .card-slide-scroll{display:flex;margin-top:-64px;flex-direction:column;justify-content:center;align-items:center;gap:12px}
@@ -543,7 +565,7 @@ footer b{color:#58616A;font-weight:700}
 -39 275 -11 21 -15 22 -25 10z"/></g></svg></div>
       <div class="txt"><b>Autonomous EMS 뉴로모픽</b><span>한국에너지기술연구원 · 3차년도 성과 요약 · 김종훈</span></div>
     </div>
-    <a class="top-cta" href="#detail"><i></i>수행 내용 보기</a>
+    <a class="top-cta" href="#tech"><i></i>수행 내용 보기</a>
   </div>
 </header>
 
@@ -598,6 +620,13 @@ footer b{color:#58616A;font-weight:700}
         <span class="tag">뉴로패널 적용에 따른 Autonomous EMS 운영 효과</span>
         <h3>분전반이 스스로 부하를 가려내고, <br class="brk">꺼도 되는 스위치를 스스로 고른다.</h3>
         <p>부하분리 · 미래상태 예측 · 중요도 판단을 하나의 엣지 장치로 묶어,<br>2개 동 6개 분전반에서 <b>15.6%</b>의 에너지절감을 확인했습니다.</p>
+      </div>
+      <div class="promo">
+        <video controls preload="none" playsinline poster="video/cm-poster.webp"
+               controlslist="nodownload" width="1920" height="1080">
+          <source src="video/cm-web.mp4" type="video/mp4">
+          이 브라우저에서는 영상을 재생할 수 없습니다.
+        </video>
       </div>
     </div>
 
@@ -671,7 +700,7 @@ footer b{color:#58616A;font-weight:700}
 
     <div style="height:96px"></div>
 
-    <div class="sect-h" style="margin-bottom:36px">
+    <div class="sect-h" id="tech" style="margin-bottom:36px">
       <h2>핵심기술별 <em>수행 내용</em></h2>
     </div>
     <div id="accs"></div>
@@ -1073,6 +1102,35 @@ document.querySelectorAll('.rep-h').forEach(function(h){
     h.setAttribute('aria-expanded', open?'true':'false');
   });
 });
+</script>
+<button class="totop" type="button" aria-label="맨 위로">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg><span>맨 위로</span>
+</button>
+
+<script>
+/* 맨 위로 버튼 */
+(function(){
+  var btn=document.querySelector('.totop'); if(!btn) return;
+  var ticking=false;
+  function upd(){
+    btn.classList.toggle('on', window.scrollY > window.innerHeight*0.6);
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ ticking=true; requestAnimationFrame(upd); }
+  },{passive:true});
+  upd();
+  btn.addEventListener('click',function(){
+    /* 맨 위로 갈 때는 펼쳐둔 핵심기술 아코디언을 모두 접는다 */
+    document.querySelectorAll('#accs .acc.open, #accs .strat.open')
+            .forEach(function(el){ el.classList.remove('open'); });
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+  });
+})();
 </script>
 </body>
 </html>
